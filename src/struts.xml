@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="utf-8" />
+	<constant name="struts.ui.theme" value="simple" />
+
+	<package name="default" extends="struts-default">
+		<action name="getInformation" class="Information.SubmitInformationAction"
+			method="getInformation">
+
+		</action>
+		
+		<action name="pythonScript" class="Information.ProcessBuilderDemo"
+			method="pythonScript">
+			<result name="success">/pythonSuccess.jsp</result>
+		</action>
+
+		<action name="registration" class="Information.SubmitInformationAction"
+			method="registration">
+
+		</action>
+		
+		<action name="getGeneralInfo" class="Information.GeneralInformation"
+			method="getGeneralInfo">
+			<result name="input">/login.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="success">/storage.jsp</result>
+		</action>
+
+		<action name="getNectworkConnectivity" class="Information.NetworkInformation"
+			method="getNetworkInformation">
+			<result name="input">/login.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="success">/storage.jsp</result>
+		</action>
+
+		<action name="getStorage" class="Information.StorageInformation"
+			method="getStorageInformation">
+			<result name="input">/login.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="success">/computation.jsp</result>
+		</action>
+		<action name="getComputation" class="Information.ComputationInformation"
+			method="getComputationInformation">
+			<result name="input">/login.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="success">/final.html</result>
+		</action>
+	</package>
+</struts>
