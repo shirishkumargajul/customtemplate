@@ -24,7 +24,7 @@
 			method="getGeneralInfo">
 			<result name="input">/login.jsp</result>
 			<result name="error">/error.jsp</result>
-			<result name="success">/storage.jsp</result>
+			<result name="success">/network.jsp</result>
 		</action>
 
 		<action name="getNectworkConnectivity" class="Information.NetworkInformation"
@@ -44,7 +44,7 @@
 			method="getComputationInformation">
 			<result name="input">/login.jsp</result>
 			<result name="error">/error.jsp</result>
-			<result name="success">/final.html</result>
+			<result name="success">/review.jsp</result>
 		</action>
 	</package>
 </struts>

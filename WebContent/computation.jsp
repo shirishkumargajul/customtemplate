@@ -242,13 +242,15 @@ A computer on which a hypervisor is running one or more virtual machines is defi
 						
 							<p>How many VMs or no. of cores you need?</p>
 							<select id="vm_cores" name="vm_cores">
-								<option value="vm_cores_null" selected>Choose One:</option>
-								<option value="01">01</option>
-								<option value="02">02</option>
-								<option value="03">03</option>
-								<option value="04">04</option>
-								<option value="05">05</option>
+								<option value="1" selected>Choose One:</option>
+								<option value="1">01</option>
+								<option value="2">02</option>
+								<option value="3">03</option>
+								<option value="4">04</option>
+								<option value="5">05</option>
 							</select>
+							
+							<!--  
 							<p>Do you require virtual server?</p>
 							<select id="virtual_server_requirement" name="virtual_server_requirement">
 								<option value="virtual_server_null" selected>Choose One:</option>
@@ -256,7 +258,7 @@ A computer on which a hypervisor is running one or more virtual machines is defi
 								<option value="virtual_server_no">No</option>
 								<option value="virtual_server_unknown">Unknown</option>
 							</select>
-							<!--  
+							
 							<p>Do you require virtual CPU?</p>
 							<select id="virtual_CPU_requirement" name="virtual_CPU_requirement">
 								<option value="virtual_CPU_null" selected>Choose One:</option>

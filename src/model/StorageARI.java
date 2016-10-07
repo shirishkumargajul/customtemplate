@@ -1,35 +1,53 @@
 package model;
 
 public class StorageARI {
-	private String storage_size;
-	private String storage_type;//local, remote
-	private String storage_disk;//HDD, SSD
-	private String storage_persistent; //persistent, non persistent
+
+	private String storageSize;
+	private String storageType; 	// local, remote
+	private String storageLocation;	// storage geo location if storage type is remote
+	private String storageDisk; 	// HDD, SSD
+	private String storageBackup; 	// persistent, non persistent
+
+	public String getStorageSize() {
+		return storageSize;
+	}
+
+	public void setStorageSize(String storageSize) {
+		this.storageSize = storageSize;
+	}
+
+	public String getStorageType() {
+		return storageType;
+	}
+
+	public void setStorageType(String storageType) {
+		this.storageType = storageType;
+	}
+
+	public String getStorageDisk() {
+		return storageDisk;
+	}
+
+	public void setStorageDisk(String storageDisk) {
+		this.storageDisk = storageDisk;
+	}
+
+	public String getStorageBackup() {
+		return storageBackup;
+	}
+
+	public void setStorageBackup(String storageBackup) {
+		this.storageBackup = storageBackup;
+	}
+
+	public String getStorageLocation() {
+		return storageLocation;
+	}
+
+	public void setStorageLocation(String storageLocation) {
+		this.storageLocation = storageLocation;
+	}
 	
-	public String getStorage_size() {
-		return storage_size;
-	}
-	public void setStorage_size(String storage_size) {
-		this.storage_size = storage_size;
-	}
-	public String getStorage_type() {
-		return storage_type;
-	}
-	public void setStorage_type(String storage_type) {
-		this.storage_type = storage_type;
-	}
-	public String getStorage_disk() {
-		return storage_disk;
-	}
-	public void setStorage_disk(String storage_disk) {
-		this.storage_disk = storage_disk;
-	}
-	public String getStorage_persistent() {
-		return storage_persistent;
-	}
-	public void setStorage_persistent(String storage_persistent) {
-		this.storage_persistent = storage_persistent;
-	}
 	
-	
+
 }

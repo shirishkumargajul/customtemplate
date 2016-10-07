@@ -1,35 +1,43 @@
 package model;
 
 public class ComputationARI {
-	private String server_type;// virtual server, dedicated server
-	private String operating_system; //Windows Server 2008R2, Windows Server 7, Linux Redhat Server 7, ESXi 5.5
-	private String size_RAM;
-	private String processor_type; // i3, i5, i7, Xeon
-	
-	public String getServer_type() {
-		return server_type;
+
+	private int noOfVmInstances; // no. of VM instances or cores
+	private String operatingSystem; // Windows Server 2008R2, Windows Server 7,
+									// Linux Redhat Server 7, ESXi 5.5
+	private String ramSize; 		// size of the ram in Mb or Gb
+	private String gpu;	 			// need gpu or not
+
+	public int getNoOfVmInstances() {
+		return noOfVmInstances;
 	}
-	public void setServer_type(String server_type) {
-		this.server_type = server_type;
+
+	public void setNoOfVmInstances(int noOfVmInstances) {
+		this.noOfVmInstances = noOfVmInstances;
 	}
-	public String getOperating_system() {
-		return operating_system;
+
+	public String getOperatingSystem() {
+		return operatingSystem;
 	}
-	public void setOperating_system(String operating_system) {
-		this.operating_system = operating_system;
+
+	public void setOperatingSystem(String operatingSystem) {
+		this.operatingSystem = operatingSystem;
 	}
-	public String getSize_RAM() {
-		return size_RAM;
+
+	public String getRamSize() {
+		return ramSize;
 	}
-	public void setSize_RAM(String size_RAM) {
-		this.size_RAM = size_RAM;
+
+	public void setRamSize(String ramSize) {
+		this.ramSize = ramSize;
 	}
-	public String getProcessor_type() {
-		return processor_type;
+
+	public String getGpu() {
+		return gpu;
 	}
-	public void setProcessor_type(String processor_type) {
-		this.processor_type = processor_type;
+
+	public void setGpu(String gpu) {
+		this.gpu = gpu;
 	}
-	
-	
+
 }

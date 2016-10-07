@@ -10,10 +10,12 @@ public class StorageInformation extends ActionSupport{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String storage_size;
-	private String storage_type;
-	private String hard_drive;
-	private String storage_backup;
+	private String storage_size;		//storage size in GB
+	private String storage_type;		//local or remote
+	private String storage_location;	//if remote then storage location
+	private String storage_drive;		//HDD or SDD
+	private String storage_backup;		//yes or no
+	
 	public String getStorage_size() {
 		return storage_size;
 	}
@@ -26,11 +28,11 @@ public class StorageInformation extends ActionSupport{
 	public void setStorage_type(String storage_type) {
 		this.storage_type = storage_type;
 	}
-	public String getHard_drive() {
-		return hard_drive;
+	public String getStorage_drive() {
+		return storage_drive;
 	}
-	public void setHard_drive(String hard_drive) {
-		this.hard_drive = hard_drive;
+	public void setStorage_drive(String hard_drive) {
+		this.storage_drive = hard_drive;
 	}
 	public String getStorage_backup() {
 		return storage_backup;
@@ -38,44 +40,65 @@ public class StorageInformation extends ActionSupport{
 	public void setStorage_backup(String storage_backup) {
 		this.storage_backup = storage_backup;
 	}
+	public String getStorage_location() {
+		return storage_location;
+	}
+	public void setStorage_location(String storage_loc) {
+		this.storage_location = storage_loc;
+	}
 	
-	public String getStorageInformation(){
+	public boolean isStorageSizeValid() {
+		return true;
+	}
+
+	
+	public String getStorageInformation() {
+		
 		System.out.println(this.getStorage_size());
 		System.out.println(this.getStorage_type());
-		System.out.println(this.getHard_drive());
+		System.out.println(this.getStorage_location());
+		System.out.println(this.getStorage_drive());
 		System.out.println(this.getStorage_backup());
-		//
+		
 		StorageARI storage = new StorageARI();
-		//set storage size--10Mbps, 20Mbps, 1Gbps, 10Gbps, and 100 Gbps
-		if(!this.getStorage_size().equals(null) && !this.getStorage_size().equals("Storage Size")){
-			storage.setStorage_size(this.getStorage_size());
-		}else{
-			storage.setStorage_size(null);
+		
+		//set storage size-- 10Gb, 50Gb, 100Gb
+		if (isStorageSizeValid()) {
+			storage.setStorageSize(this.getStorage_size());
 		}
+		
 		//set storage type--local / remote storage
-		if(this.getStorage_type().equals("storage_local")){
-			storage.setStorage_type("Local Storage");
-		}else if(this.getStorage_type().equals("storage_remote")){
-			storage.setStorage_type("Remote Storage");
-		}else{
-			storage.setStorage_size("Local Storage,Remote Storage");
+		if (this.getStorage_type().equals("storage_remote")){
+			storage.setStorageType("remote");
+		} else {
+			storage.setStorageType("local"); //default value
 		}
+		
+		//set storage location if storage type is remote
+		if (this.getStorage_location().equals("storage_location_null")) {
+			storage.setStorageLocation(null);
+		} else if (this.getStorage_location().equals("storage_location_east")) {
+			storage.setStorageLocation("east");
+		} else if (this.getStorage_location().equals("storage_location_central")) {
+			storage.setStorageLocation("west");
+		} else if (this.getStorage_location().equals("storage_location_west")) {
+			storage.setStorageLocation("central");
+		}
+		
 		//set  storage_disk--HDD,SSD
-		if(this.getHard_drive().equals("hard_drive_HDD")){
-			storage.setStorage_disk("HDD");
-		}else if(this.getHard_drive().equals("hard_drive_SSD")){
-			storage.setStorage_disk("SSD");
-		}else{
-			storage.setStorage_disk("HDD,SSD");
+		if (this.getStorage_drive().equals("storage_drive_SSD")) {
+			storage.setStorageDisk("SDD");
+		} else {
+			storage.setStorageDisk("HDD");
 		}
+		
 		//set storage_presistent
-		if(this.getStorage_backup().equals("storage_backup_yes")){
-			storage.setStorage_persistent("persistent");
-		}else if(this.getStorage_backup().equals("storage_backup_no")){
-			storage.setStorage_persistent("non persistent");
-		}else{
-			storage.setStorage_persistent("persistent,non persistent");
+		if (this.getStorage_backup().equals("storage_backup_yes")) {
+			storage.setStorageBackup("yes");
+		} else {
+			storage.setStorageBackup("no");
 		}
+		
 		ActionContext ctx = ActionContext.getContext();
 		ctx.getSession().put("storage", storage);
 		

@@ -162,12 +162,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="col-md-4">
 		<div class="contact_right">
 			<div class="contact-form_grid">
-				<s:form action="getGeneral" method="post" namespace="/">
+				<s:form action="getGeneralInfo" method="post" namespace="/">
 					<p>Application Name</p>
-					<input type="text" class="textbox" name="app_name">
+					<input type="text" class="textbox" name="appName">
 					
-					<p>The type of your storage</p>
-					<select id="app_kind" name="app_kind">
+					<p>Kind of your application</p>
+					<select id="app_kind" name="appKind">
 						<option value="app_kind_null" selected>Choose One:</option>
 						<option value="app_webApp">Web Application</option>
 						<option value="app_Scientific">Scientific Application</option>

@@ -157,7 +157,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="about.html">About Us</a></li>
 						<li><a href="services.html">Services</a></li>
 						<li><a class="active" href="login.jsp">Account</a></li>
-						<li><a href="network.jsp">Start</a></li>
+						<li><a href="general.jsp">Start</a></li>
 					</ul>
 				</div>
 				<!-- script for menu -->

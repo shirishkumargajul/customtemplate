@@ -18,101 +18,99 @@ public class ComputationInformation extends ActionSupport{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String virtual_server_requirement;
-//	private String virtual_CPU_requirement;
-//	private String virtual_memory_requirement;
-//	private String dedicated_server_requirement;
-//	private String dedicated_GPU_requirement;
-//	private String hypervisor_requirement;
+	private int vm_cores;
 	private String operating_system;
-	private String computation_processor;
+	private String dedicated_GPU_requirement;
 	private String computation_RAM;
 	
-	public String getVirtual_server_requirement() {
-		return virtual_server_requirement;
+	public int getVm_cores() {
+		return vm_cores;
 	}
-	public void setVirtual_server_requirement(String virtual_server_requirement) {
-		this.virtual_server_requirement = virtual_server_requirement;
+
+	public void setVm_cores(int vm_cores) {
+		this.vm_cores = vm_cores;
 	}
+
 	public String getOperating_system() {
 		return operating_system;
 	}
+
 	public void setOperating_system(String operating_system) {
 		this.operating_system = operating_system;
 	}
-	public String getComputation_processor() {
-		return computation_processor;
+
+	public String getDedicated_GPU_requirement() {
+		return dedicated_GPU_requirement;
 	}
-	public void setComputation_processor(String computation_processor) {
-		this.computation_processor = computation_processor;
+
+	public void setDedicated_GPU_requirement(String dedicated_GPU_requirement) {
+		this.dedicated_GPU_requirement = dedicated_GPU_requirement;
 	}
+
 	public String getComputation_RAM() {
 		return computation_RAM;
 	}
+
 	public void setComputation_RAM(String computation_RAM) {
 		this.computation_RAM = computation_RAM;
 	}
 	
-	public String getComputationInformation(){
-		System.out.println(this.getVirtual_server_requirement());
+	public boolean isRamSizeValid() {
+		return true;
+	}
+
+	public String getComputationInformation() {
+		
+		System.out.println(this.getVm_cores());
 		System.out.println(this.getOperating_system());
-		System.out.println(this.getComputation_processor());
+		System.out.println(this.getDedicated_GPU_requirement());
 		System.out.println(this.getComputation_RAM());
 		
 		ComputationARI computation = new ComputationARI();
-		//set server type
-		if(this.getVirtual_server_requirement().equals("virtual_server_yes")){
-			computation.setServer_type("Virtual Server");
-		}else if(this.getVirtual_server_requirement().equals("virtual_server_no")){
-			computation.setServer_type("Dedicated Server");
-		}else{
-			computation.setServer_type("Virtual Server,Dedicated Server");
-		}
+		
+		//set no. of vm instances
+		computation.setNoOfVmInstances(this.getVm_cores());
 		
 		//set operating system
 		if(this.getOperating_system().equals("operating_system_1")){
-			computation.setOperating_system("Windows Server 2008R2");
+			computation.setOperatingSystem("Windows Server 2008R2");
 		}else if(this.getOperating_system().equals("operating_system_2")){
-			computation.setOperating_system("Windows Server 7");
+			computation.setOperatingSystem("Windows Server 7");
 		}else if(this.getOperating_system().equals("operating_system_3")){
-			computation.setOperating_system("Linux Redhat Server 7");
+			computation.setOperatingSystem("Linux Redhat Server 7");
 		}else if(this.getOperating_system().equals("operating_system_4")){
-			computation.setOperating_system("ESXi 5.5");
+			computation.setOperatingSystem("ESXi 5.5");
 		}else{
-			computation.setOperating_system("Windows Server,Linux,ESXi");
-		}
-		
-		//set processor
-		if(this.getComputation_processor().equals("computation_processor_i3")){
-			computation.setProcessor_type("i3");
-		}else if(this.getComputation_processor().equals("computation_processor_i5")){
-			computation.setProcessor_type("i5");
-		}else if(this.getComputation_processor().equals("computation_processor_i7")){
-			computation.setProcessor_type("i7");
-		}else if(this.getComputation_processor().equals("computation_processor_intel")){
-			computation.setProcessor_type("Xeon");
-		}else{
-			computation.setProcessor_type(null);
+			computation.setOperatingSystem("Ubuntu Server");
 		}
 		
 		//set RAM size
-		if(!this.getComputation_RAM().equals(null) && !this.getComputation_RAM().equals("RAM Size")){
-			computation.setSize_RAM(this.getComputation_RAM());
+		if (isRamSizeValid()) {
+			computation.setRamSize(this.getComputation_RAM());
+		}
+		
+		//set GPU requirement
+		if (this.getDedicated_GPU_requirement().equals("dedicated_GPU_yes")) {
+			computation.setGpu("yes");
+		} else {
+			computation.setGpu("no");
 		}
 		
 		ActionContext ctx = ActionContext.getContext();
 		ctx.getSession().put("computation", computation);
-		//generate ARI
+		
+		return SUCCESS;
+		
+		/*//generate ARI
 		if(this.generateARI() == true){
-			
 			return SUCCESS;
 		}else{
 			return ERROR;
-		}
+		}*/
 		
 	}
 	
-	public boolean generateARI(){
+	public boolean generateARI() {
 		boolean flag = false;
 		
 		ARI_Generation_Service ARIservice = new ARI_Generation_Service();
@@ -145,6 +143,7 @@ public class ComputationInformation extends ActionSupport{
 		ComputationARI computation = (ComputationARI) ctx.getSession().get("computation");
 		
 		Precondition preconditon = precondtionService.generatePrecondition(emailID, network, storage, computation);
+		System.out.println(preconditon.toString());
 		return true;
 	}
 	

@@ -163,10 +163,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="contact_right">
 			<div class="contact-form_grid">
 				<s:form action="getStorage" method="post" namespace="/">
+				
 					<p>Your storage capacity requirement</p>
 					<input type="text" class="textbox" name="storage_size" value="Storage Size"
 						onfocus="this.value = '';"
 						onblur="if (this.value == '') {this.value = 'Storage Size';}">
+						
 					<p>The type of your storage</p>
 					<select id="storage_type" name="storage_type" onBlur="toggleLocation()">
 						<option value="storage_null" selected>Choose One:</option>
@@ -174,19 +176,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<option value="storage_remote">Remote Storage</option>
 						<option value="storage_unknown">Unknown</option>
 					</select>
-						<p>Geo-location of the datacenter where you want to store your data?</p>
-						<select id="storage_location" name="storage_location">
-							<option value="storage_location_null" selected>Choose One:</option>
-							<option value="storage_location_east">East coast</option>
-							<option value="storage_location_central">Central</option>
-							<option value="storage_location_west">West coast</option>
-						</select>
+					
+					<p>Geo-location of the datacenter where you want to store your data?</p>
+					<select id="storage_location" name="storage_location">
+						<option value="storage_location_null" selected>Choose One:</option>
+						<option value="storage_location_east">East coast</option>
+						<option value="storage_location_central">Central</option>
+						<option value="storage_location_west">West coast</option>
+					</select>
+					
 					<p>Which kind of storage do you want</p>
-					<select id="hard_drive" name="hard_drive">
-						<option value="hard_drive_null" selected>Choose One:</option>
-						<option value="hard_drive_HDD">HDD</option>
-						<option value="hard_drive_SSD">SSD</option>
-						<option value="hard_drive_unknown">Unknown</option>
+					<select id="storage_drive" name="storage_drive">
+						<option value="storage_drive_null" selected>Choose One:</option>
+						<option value="storage_drive_HDD">HDD</option>
+						<option value="storage_drive_SSD">SSD</option>
+						<option value="storage_drive_unknown">Unknown</option>
 					</select>
 					<p>Do you need backup your storage</p>
 					<select id="storage_backup" name="storage_backup">

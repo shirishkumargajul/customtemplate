@@ -2,8 +2,10 @@ package model;
 
 public class NetworkARI {
 	private String bandwidth;// 10Mbps, 20Mbps, 1Gbps, 10Gbps, and 100Gbps
-	private String layer;// layer 2, layer 3, and all
-	private String resources_type;// VPN,NFV,Hardware,SDN, and all
+	private String layer;// layer 2, layer 3, and all (mapped to isolated network)
+	//private String resources_type;// VPN,NFV,Hardware,SDN, and all
+	private String nfv;
+	private String networkType;
 
 	public String getBandwidth() {
 		return bandwidth;
@@ -21,12 +23,21 @@ public class NetworkARI {
 		this.layer = layer;
 	}
 
-	public String getResources_type() {
-		return resources_type;
+	public String getNfv() {
+		return nfv;
 	}
 
-	public void setResources_type(String resources_type) {
-		this.resources_type = resources_type;
+	public void setNfv(String nfv) {
+		this.nfv = nfv;
 	}
+
+	public String getNetworkType() {
+		return networkType;
+	}
+
+	public void setNetworkType(String networkType) {
+		this.networkType = networkType;
+	}
+
 
 }
