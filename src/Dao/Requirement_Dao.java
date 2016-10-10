@@ -1,8 +1,8 @@
 package Dao;
 
-import model.ComputationARI;
-import model.NetworkARI;
-import model.StorageARI;
+import com.geni.beans.ComputationARI;
+import com.geni.beans.NetworkARI;
+import com.geni.beans.StorageARI;
 
 public class Requirement_Dao {
 

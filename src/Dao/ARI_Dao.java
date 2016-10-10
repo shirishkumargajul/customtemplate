@@ -5,8 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import model.ApplicationRI;
-
+import com.geni.beans.ApplicationRI;
 import com.mysql.jdbc.PreparedStatement;
 
 import utility.MysqlJdbc;

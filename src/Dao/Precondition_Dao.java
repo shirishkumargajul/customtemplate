@@ -5,10 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.geni.beans.ApplicationRI;
+import com.geni.beans.Precondition;
 import com.mysql.jdbc.PreparedStatement;
 
-import model.ApplicationRI;
-import model.Precondition;
 import utility.MysqlJdbc;
 
 public class Precondition_Dao {

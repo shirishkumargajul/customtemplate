@@ -164,18 +164,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="contact-form_grid">
 				<s:form action="getGeneralInfo" method="post" namespace="/">
 					<p>Application Name</p>
-					<input type="text" class="textbox" name="appName">
+					<s:textfield class="textbox" name="appName" key="appName"/>
 					
 					<p>Kind of your application</p>
-					<select id="app_kind" name="appKind">
+<%-- 					<s:select id="app_kind" name="appKind" key="general.appKind"/>
 						<option value="app_kind_null" selected>Choose One:</option>
 						<option value="app_webApp">Web Application</option>
 						<option value="app_Scientific">Scientific Application</option>
 						<option value="app_dataIntensive">Data Intensive</option>
 						<option value="app_computeIntensive">Computation Intensive</option>
-					</select>
+					</select> --%>
 					
-					<input type="submit" value="Next">
+					<s:select name="appKind" key="appKind" 
+						list="#{'app_kind_null':'Choose One','app_webApp':'Web Application',
+								'app_Scientific':'Scientific Application','app_dataIntensive':'Data Intensive',
+								'app_computeIntensive':'Computation Intensive'}">
+					</s:select>
+					
+					<s:submit value="Next" />
 				</s:form>
 			</div>
 		</div>
@@ -192,7 +198,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	class="googlepluse"></i></a> <a href="#"><i class="youtube"></i></a> <a
 	href="#"><i class="linkedin"></i></a></div>
 <div class="copyright">
-<p>Copyright &copy; 2015 All rights reserved | Template by <a
+<p>Copyright &copy; 2016 All rights reserved | Template by <a
 	href="http://www.baidu.com"> CustomTemplateTeam</a></p>
 </div>
 </div>
