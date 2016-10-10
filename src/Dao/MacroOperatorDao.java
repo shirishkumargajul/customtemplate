@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.geni.beans.*;
 import com.mysql.jdbc.*;
 
 import utility.MysqlJdbc;
-import model.*;
 public class MacroOperatorDao {
 	//MacroOperator macro = new MacroOperator();
 	private MacroOperator macro;

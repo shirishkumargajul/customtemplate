@@ -5,16 +5,17 @@
 	<constant name="struts.i18n.encoding" value="utf-8" />
 	<constant name="struts.ui.theme" value="simple" />
 
-	<include file="userRequirements.xml"></include>
-	<include file="login.xml"></include>
+	<package name="login" extends="struts-default">
 
-	<package name="default" extends="struts-default">
+		<action name="getInformation" class="com.geni.actions.UserLogin"
+			method="getInformation">
 
-		<action name="pythonScript" class="com.geni.actions.ProcessBuilderDemo"
-			method="pythonScript">
-			<result name="success">/pythonSuccess.jsp</result>
 		</action>
 
+		<action name="registration" class="com.geni.actions.UserLogin"
+			method="registration">
+		</action>
+		
 	</package>
-	
+
 </struts>

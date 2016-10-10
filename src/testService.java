@@ -1,5 +1,5 @@
-import Service.MacroOperatorService;
-import Service.ResourceSpaceGeneration;
+import com.geni.services.MacroOperatorService;
+import com.geni.services.ResourceSpaceGeneration;
 
 
 

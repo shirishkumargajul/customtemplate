@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+"http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="utf-8" />
+	<constant name="struts.ui.theme" value="simple" />
+
+	<package name="userRequirements" extends="struts-default">
+
+		<action name="getGeneralInfo" class="com.geni.actions.GeneralInformation"
+			method="getGeneralInfo">
+			<result name="input">/general.jsp</result>
+			<result name="success">/network.jsp</result>
+		</action>
+
+		<action name="getNectworkConnectivity" class="com.geni.actions.NetworkInformation"
+			method="getNetworkInformation">
+			<result name="input">/login.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="success">/storage.jsp</result>
+		</action>
+
+		<action name="getStorage" class="com.geni.actions.StorageInformation"
+			method="getStorageInformation">
+			<result name="input">/login.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="success">/computation.jsp</result>
+		</action>
+		<action name="getComputation" class="com.geni.actions.ComputationInformation"
+			method="getComputationInformation">
+			<result name="input">/login.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="success">/review.jsp</result>
+		</action>
+
+	</package>
+
+</struts>
