@@ -3,43 +3,42 @@ package com.geni.actions;
 import com.geni.beans.ApplicationRI;
 import com.geni.beans.ComputationARI;
 import com.geni.beans.NetworkARI;
-import com.geni.beans.Precondition;
 import com.geni.beans.SoftwareARI;
 import com.geni.beans.StorageARI;
 import com.geni.services.ARI_Generation_Service;
 import com.geni.services.MacroOperatorService;
-import com.geni.services.PreconditionService;
+import com.mysql.jdbc.StringUtils;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
 
-public class SoftwareInformation extends ActionSupport{
+public class SoftwareInformation extends ActionSupport implements ModelDriven<SoftwareARI>{
 
 	private static final long serialVersionUID = 1L;
 	
-	private String web_server;
-	private String database_server;
 	
+	private SoftwareARI software = new SoftwareARI();
 	
-	public String getWeb_server() {
-		return web_server;
+	public SoftwareARI getSoftware() {
+		return software;
 	}
-
-	public void setWeb_server(String web_server) {
-		this.web_server = web_server;
+	public void setSoftware(SoftwareARI software) {
+		this.software = software;
 	}
-
-	public String getDatabase_server() {
-		return database_server;
+	
+	public void validate() {
+		if (StringUtils.isNullOrEmpty(software.getWebServer())) {
+			addFieldError("webServer", "Select a web server");
+		}
+		if (StringUtils.isNullOrEmpty(software.getDatabaseServer())) {
+			addFieldError("databaseServer", "Select a DB server");
+		}
 	}
-
-	public void setDatabase_server(String database_server) {
-		this.database_server = database_server;
-	}
-
+	
 	public String getSoftwareInformation() {
-		SoftwareARI software = new SoftwareARI();
-		software.setWebServer(this.getWeb_server());
-		software.setDatabaseServer(this.getDatabase_server());
+		
+		System.out.println(software.getWebServer());
+		System.out.println(software.getDatabaseServer());
 		
 		ActionContext ctx = ActionContext.getContext();
 		ctx.getSession().put("software", software);
@@ -66,20 +65,9 @@ public class SoftwareInformation extends ActionSupport{
 		macro_service.MacroOperatorGeneration(Integer.parseInt(ARI.getApprID()));
 		return flag;
 	}
-	
-	//added by arjun
-	public boolean generatePrecondition() {
-		PreconditionService precondtionService = new PreconditionService();
-		
-		ActionContext ctx = ActionContext.getContext();
-		
-		String emailID = (String) ctx.getSession().get("emailid");
-		NetworkARI network = (NetworkARI) ctx.getSession().get("network");
-		StorageARI storage = (StorageARI) ctx.getSession().get("storage");
-		ComputationARI computation = (ComputationARI) ctx.getSession().get("computation");
-		
-		Precondition preconditon = precondtionService.generatePrecondition(emailID, network, storage, computation);
-		System.out.println(preconditon.toString());
-		return true;
+
+	@Override
+	public SoftwareARI getModel() {
+		return software;
 	}
 }

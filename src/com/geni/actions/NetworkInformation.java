@@ -30,6 +30,10 @@ public class NetworkInformation extends ActionSupport implements ModelDriven<Net
 		}
 	}
 	
+	public String display() {
+		return NONE;
+	}
+	
 	public String getNetworkInformation() {
 		
 		System.out.println(network.getBandwidth());

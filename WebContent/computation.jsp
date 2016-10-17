@@ -322,11 +322,11 @@ A computer on which a hypervisor is running one or more virtual machines is defi
 									'default':'Unknown'}">
 							</s:select>
 							
-							<p>Architecture of Operating System</p>
+							<%-- <p>Architecture of Operating System</p>
 							<s:fielderror fieldName="osArchitecture"></s:fielderror>
 							<s:select name="osArchitecture" id="osArchitecture" key="osArchitecture"
 								list="#{'null':'Choose One','32 bit':'32 bit','64 bit':'64 bit','default':'Unknown'}">
-							</s:select>
+							</s:select> --%>
 							
 							<p>What's the size of your RAM</p>
 							<s:fielderror fieldName="ramSize"></s:fielderror>

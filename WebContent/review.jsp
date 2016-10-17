@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=GB18030"
 	pageEncoding="GB18030"%>
-<%@ page import="com.geni.beans.GeneralARI,com.geni.beans.NetworkARI,com.geni.beans.StorageARI,com.geni.beans.ComputationARI" %>
+<%@ page import="com.geni.beans.GeneralARI,com.geni.beans.NetworkARI,com.geni.beans.StorageARI,com.geni.beans.ComputationARI,com.geni.beans.SoftwareARI" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib prefix="s" uri="/struts-tags"%>
 <html>
@@ -77,16 +77,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<tr>
 					<td>
 						<% GeneralARI general = (GeneralARI)session.getAttribute("general"); %>
-						<p>Application Name : <%= general.getAppName() %></p>
-						<p>Application Type : <%= general.getAppKind() %></p>
-						<p>No. of Nodes		: <%= general.getNoOfNodes() %></p>
-						<p>Name of the Node	: <%= general.getNodeName_1() %></p>
+						<p>Application Name 	: <%= general.getAppName() %></p>
+						<p>Application Type 	: <%= general.getAppKind() %></p>
+						<p>Application Priority : <%= general.getAppPriority() %></p>
+						<p>Application DataSize : <%= general.getAppDataSize() %></p>
+						<p>No. of Nodes			: <%= general.getNoOfNodes() %></p>
 					</td>
 					<td>
 						<% NetworkARI network = (NetworkARI)session.getAttribute("network"); %>
-						<p>Isolate Network : <%= network.getLayer() %></p>
 						<p>Bandwidth 	   : <%= network.getBandwidth() %></p>
-						<p>Public IP	   : <%= network.getIp() %>
+						<p>Isolate Network : <%= network.getIsolated() %></p>
+						<p>Layer 		   : <%= network.getLayer() %>
+						<p>IP Type		   : <%= network.getIp() %>
 						<p>NFV			   : <%= network.getNfv() %></p>
 						<p>Network Type    : <%= network.getNetworkType() %></p>
 					</td>
@@ -104,20 +106,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<% StorageARI storage = (StorageARI)session.getAttribute("storage");%>
 						<p>Local Storage Size 	: <%= storage.getLocalStorageSize() %></p>
 						<p>Local Storage Disk 	: <%= storage.getLocalStorageDisk() %></p>
-						<p>Remote Storage Location : <%= storage.getRemoteStorageLocation() %></p>
 						<p>Remote Storage Size 	: <%= storage.getRemoteStorageSize() %></p>
-						<p>Remote Storage Disk	: <%=storage.getRemoteStorageDisk() %>
+						<p>Remote Storage Disk	: <%= storage.getRemoteStorageDisk() %></p>
+						<p>Remote Storage Location : <%= storage.getRemoteStorageLocation() %></p>
 					</td>
 					<td>
 						<% ComputationARI compute = (ComputationARI)session.getAttribute("computation");%>
-						<p>No. of cores	: <%= compute.getNoOfCores() %></p>
+						<p>No. of cores		: <%= compute.getNoOfCores() %></p>
 						<p>Dedicated Server : <%= compute.getDedicatedServer() %></p>
-						<p>OS			: <%= compute.getOperatingSystem() %></p>
-						<p>OS Architecture	: <%= compute.getOsArchitecture()%></p>
-						<p>Ram Size		: <%= compute.getRamSize() %></p>
-						<p>Gpu Size		: <%= compute.getGpuSize()%>
+						<p>OS				: <%= compute.getOperatingSystem() %></p>
+						<p>Ram Size			: <%= compute.getRamSize() %></p>
+						<p>Gpu Size			: <%= compute.getGpuSize()%>
 					</td>
 				</tr>
+				<tr><td colspan="2">
+					<% SoftwareARI software = (SoftwareARI)session.getAttribute("software"); %>
+					<p>Web Server	: <%= software.getWebServer() %>
+					<p>DB Server	: <%= software.getDatabaseServer() %>
+				</td></tr>
 			</table>
 			
 			<br/>

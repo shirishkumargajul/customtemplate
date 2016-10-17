@@ -29,9 +29,6 @@ public class ComputationInformation extends ActionSupport implements ModelDriven
 		if (computation.getOperatingSystem().equals("null")) {
 			addFieldError("operatingSystem", "Please choose operating system");
 		}
-		if (computation.getOsArchitecture().equals("null")) {
-			addFieldError("osArchitecture", "Please choose architecture");
-		}
 		if (computation.getRamSize().equals("null")) {
 			addFieldError("ramSize", "Please choose ram size");
 		}
@@ -62,10 +59,11 @@ public class ComputationInformation extends ActionSupport implements ModelDriven
 			computation.setOperatingSystem("ubuntu_os_14");
 		}
 		
-		//set default os architecture
-		if (computation.getOsArchitecture().equals("null") && 
-				(!computation.getRamSize().equals("512MB - 1GB") && !computation.getRamSize().equals("1GB - 2GB") && 
-						!computation.getRamSize().equals("2GB - 4GB")) ) {
+		//set os architecture based on ram size
+		if (computation.getRamSize().equals("512MB - 1GB") || computation.getRamSize().equals("1GB - 2GB") || 
+				computation.getRamSize().equals("2GB - 4GB")) {
+			computation.setOsArchitecture("32 bit");
+		} else {
 			computation.setOsArchitecture("64 bit");
 		}
 		

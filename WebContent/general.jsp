@@ -182,6 +182,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						list="#{1:1,2:2,3:3,4:4,5:5}">
 					</s:select>
 					
+					<%-- <s:select name="noOfNodes" id="noOfNodes" key="noOfNodes" list="nodeList">
+					</s:select>
+					 --%>
 					<s:submit value="Next" />
 				</s:form>
 			</div>

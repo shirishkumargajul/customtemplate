@@ -14,7 +14,7 @@
 			method="pythonScript">
 			<result name="success">/pythonSuccess.jsp</result>
 		</action>
-
+    
 	</package>
 	
 </struts>

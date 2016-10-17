@@ -6,12 +6,23 @@
 	<constant name="struts.ui.theme" value="simple" />
 
 	<package name="userRequirements" extends="struts-default">
-
+		
+<!-- 		<action name="getGeneralInfo" class="com.geni.actions.GeneralInformation"
+			method="display">
+			<result name="none">/general.jsp</result>
+		</action> -->
+		
 		<action name="getGeneralInfo" class="com.geni.actions.GeneralInformation"
 			method="getGeneralInfo">
 			<result name="input">/general.jsp</result>
 			<result name="success">/network.jsp</result>
-		</action>
+		</action> 
+		
+		<!-- <action name="getNetwork" class="com.geni.actions.NetworkInformation"
+			method="display">
+			<result name="none">/network.jsp</result>
+		</action> -->
+		
 		<action name="getNectworkConnectivity" class="com.geni.actions.NetworkInformation"
 			method="getNetworkInformation">
 			<result name="input">/network.jsp</result>

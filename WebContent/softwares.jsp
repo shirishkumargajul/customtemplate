@@ -42,6 +42,11 @@
 	}
 	
 </script>
+<style>
+label {
+	color: red;
+}
+</style>
 </head>
 
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -178,28 +183,18 @@ The more RAM your computer has, the faster your programs will generally run. If 
 						<s:form action="getSoftware" method="post" namespace="/">
 						
 							<p>Do you need Web Server?</p>
-							<select id="web_server" name="web_server" onchange="toggleWebServers()">
-								<option value="null" selected>Choose One:</option>
-								<option value="no">No</option>
-								<option value="yes">Yes</option>
-								<option value="default">Unknown</option>
-							</select>
+							<s:fielderror fieldName="webServer"></s:fielderror>
+							<s:radio name="webServer" id="webServer" key="webServer" 
+								list="#{'null':'No web Server','Apache':'Apache','GWS':'GWS','nginx':'nginx' }">
+							</s:radio>
 							
-							<div id="dynamic_web_server">
-							
-							</div>
 							
 							<p>Do you need database server?</p>
-							<select id="database_server" name="database_server" onchange="toggleDbServers()">
-								<option value="null" selected>Choose One:</option>
-								<option value="no">No</option>
-								<option value="yes">Yes</option>
-								<option value="default">Unknown</option>
-							</select>
+							<s:fielderror fieldName="databaseServer"></s:fielderror>
+							<s:radio name="databaseServer" id="databaseServer" key="databaseServer" 
+								list="#{'null':'No db server','MySQL':'MySQL','PostgreSQL':'PostgreSQL','MariaDB':'MariaDB'}">
+							</s:radio>
 							
-							<div id="dynamic_database_server">
-								
-							</div>
 							
 							<p>Additional Softwares</p>
 							<input type="text" name="sw_name" value="app name">
