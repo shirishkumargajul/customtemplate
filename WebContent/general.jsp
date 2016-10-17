@@ -9,6 +9,8 @@
 <script>
 
 </script>
+
+<s:head/>
 </head>
 
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -45,7 +47,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<li><a href="about.hmtl">About Us</a></li>
 	<li><a href="services.html">Services</a></li>
 	<li><a href="login.jsp">Account</a></li>
-	<li><a class="active" href="storage.jsp">Start</a></li>
+	<li><a class="active" href="general.jsp">Start</a></li>
 </ul>
 </div>
 <!-- script for menu --> <script>
@@ -61,14 +63,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- header-section-ends -->
 <div class="content">
 <div class="contact about-desc">
-<h3>Step 1/4 : General</h3>
+<h3>Step 1/5 : General</h3>
 <div class="container">
 <div class="row">
 <div class="col-md-8 contact_left">
 		<h4>Application Details</h4>
    					<p class="m_6">In this step, we only focus on the general info of the applicaiton.
    					<br>
-   					Storage resources mainly include Local Storage, Remote Storage, the size of the Storage, Magnetic storage, Solid Storage and so on.
+   					In order to have a good understanding of your application, we need to know some basic ideas and functions of your application.
    					<h4>Questions Explanation</h4>
    			<br>
    			<div class="row">
@@ -80,58 +82,40 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						    <div class="panel-heading" role="tab" id="headingOne">
 						      <h5 class="panel-title">
 						        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-						          <strong>How to calculate your storage requirement?</strong>
+						          <strong>What is the main function of your application ?</strong>
 						        </a>
 						      </h5>
 						    </div>
 						    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
 						      <div class="panel-body">
-						        	In order to figure out your requirement of storage capacity, you need to find out what is the maximum size of your total documents that need to be stored in the disk. As long as you know that, you can know your requirement about the storage based on that data size.
+						        	The main function of your application is about what you are going to do with your application. For example, if you want your application can transmit your data in an efficient way, then the main function of your application should include data transferring. If you want your application can handle large amount of data and do some complex computation between these data, then the main function of your application should also include computation.
 						         </div>
 						    </div>
 						  </div>
 					  
-				
-						  <!-- Q2 -->
-						  <div class="panel panel-default">
-						    <div class="panel-heading" role="tab" id="headingTwo">
-						      <h5 class="panel-title">
-						        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-						          <strong>What is the difference between Local Storage and Remote Storage?</strong>
-						        </a>
-						      </h5>
-						    </div>
-						    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-						      <div class="panel-body">
-						       		You can use Remote Storage to extend disk space on your server without adding more hard disks. Remote Storage automatically copies eligible files on your local volumes to a library of magnetic tapes or magneto-optical disks. Remote Storage then monitors the amount of space that is available on your local volumes.
-						        </div>
-						    </div>
-						  </div>
 					
-						  <!-- Q3 -->
+						  <!-- Q2 -->
 						  <div class="panel panel-default">
 						    <div class="panel-heading" role="tab" id="headingThree">
 						      <h5 class="panel-title">
 						        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-						          <strong>Which kind of storage is suitable for you?</strong>
+						          <strong>What is the priority?</strong>
 						        </a>
 						      </h5>
 						    </div>
 						    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
 						      <div class="panel-body">
-						        	<Strong>Data Transfer</Strong>:In an HDD, data transfer is sequential.In an SSD, data transfer is not sequential; it is random access so it is faster.<br>
-						        	<Strong>Reliability</Strong>: Unlike HDD drives, SSD disks do not have moving parts. So SSD reliability is higher. <br>
-						        	<Strong>Price</Strong>: As of May 2014, SSDs are still more expensive per gigabyte than hard drives but prices for SSDs have fallen substantially in recent years.<br>
+						        	The priority of the application includes network, storage and computation. The priority of the application means which part plays the most important role in the your application. For example, the priority of an application that needs lots of data processing is computation.
 						      </div>
 						    </div>
 						  </div>
 						  
-						  <!-- Q4 -->
+						  <!-- Q3 -->
 						  <div class="panel panel-default">
 						    <div class="panel-heading" role="tab" id="headingFour">
 						      <h5 class="panel-title">
 						        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-						          <strong>Why do we need to backup our storage?</strong>
+						          <strong>What is no of Nodes?</strong>
 						        </a>
 						      </h5>
 						    </div>
@@ -162,23 +146,40 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="col-md-4">
 		<div class="contact_right">
 			<div class="contact-form_grid">
+			
 				<s:form action="getGeneralInfo" method="post" namespace="/">
+				
 					<p>Application Name</p>
-					<s:textfield class="textbox" name="appName" key="appName"/>
+					<s:fielderror fieldName="appName"></s:fielderror>
+					<s:textfield class="textbox" name="appName" key="appName" />
 					
 					<p>Kind of your application</p>
-<%-- 					<s:select id="app_kind" name="appKind" key="general.appKind"/>
-						<option value="app_kind_null" selected>Choose One:</option>
-						<option value="app_webApp">Web Application</option>
-						<option value="app_Scientific">Scientific Application</option>
-						<option value="app_dataIntensive">Data Intensive</option>
-						<option value="app_computeIntensive">Computation Intensive</option>
-					</select> --%>
-					
+					<s:fielderror fieldName="appKind"></s:fielderror>
 					<s:select name="appKind" key="appKind" 
-						list="#{'app_kind_null':'Choose One','app_webApp':'Web Application',
-								'app_Scientific':'Scientific Application','app_dataIntensive':'Data Intensive',
-								'app_computeIntensive':'Computation Intensive'}">
+						list="#{'null':'Choose One','webApp':'Web Application',
+						'dataIntensive':'Data Intensive','computeIntensive':'Computation Intensive',
+						'missionCritical':'Mission-critical Application','streamingApp':'Live/Streaming Application',
+						'default':'Unknown'}">
+					</s:select>
+					
+					<p>Priority</p>
+					<s:fielderror fieldName="appPriority"></s:fielderror>
+					<s:select name="appPriority" key="appPriority" 
+						list="#{'null':'Choose One:','performance':'High Performance',
+						'availability':'High Availability','throughput':'High Throughput',
+						'default':'Unknown'}">
+					</s:select>
+					
+					<p>Data Size of you Application</p>
+					<s:fielderror fieldName="appDataSize"></s:fielderror>
+					<s:select name="appDataSize" key="appDataSize"
+						list="#{'null':'Choose One:','MB':'MB',
+						'GB':'GB','TB':'TB','default':'Unknown'}">
+					</s:select>
+					
+					<p>No of Nodes</p>
+					<s:select id="noOfNodes" name="noOfNodes" key="noOfNodes"
+						list="#{1:1,2:2,3:3,4:4,5:5}">
 					</s:select>
 					
 					<s:submit value="Next" />

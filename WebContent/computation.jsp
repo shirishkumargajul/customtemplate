@@ -6,6 +6,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=GB18030">
 <title>Computation</title>
+<script>
+	function toggleGpuRamSize() {
+		var gpu = document.getElementById("dedicated_GPU_requirement").value; 
+		var gpuSize = document.getElementById("dynamic_gpu_size");
+		if (gpu == "yes") {
+			var text = "<p>GPU Ram Size</p>" + "<select id=\"gpu_RAM\" name=\"gpu_RAM\"> \
+			<option value=\"null\" selected>Choose One:</option> \
+			<option value=\"gpu_size_1\">512MB - 1GB</option> \
+			<option value=\"gpu_size_2\">1GB - 2GB</option> \
+			<option value=\"gpu_size_3\">2Gb - 4GB</option> \
+			<option value=\"gpu_size_4\">4Gb - 8GB</option> \
+			<option value=\"gpu_size_5\">8Gb - 16GB</option> \
+			<option value=\"gpu_size_6\">16Gb - 32GB</option> \
+			</select>";
+			gpuSize.innerHTML = text;
+		} else {
+			gpuSize.innerHTML = "";
+		}
+	}
+</script>
 </head>
 
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -58,7 +78,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- header-section-ends -->
 <div class="content">
 <div class="contact about-desc">
-<h3>Step 4/4 : Computation</h3>
+<h3>Step 4/5 : Computation</h3>
 <div class="container">
 <div class="row">
 <div class="col-md-8 contact_left">
@@ -240,15 +260,12 @@ A computer on which a hypervisor is running one or more virtual machines is defi
 					<div class="contact-form_grid">
 						<s:form action="getComputation" method="post" namespace="/">
 						
-							<p>How many VMs or no. of cores you need?</p>
-							<select id="vm_cores" name="vm_cores">
-								<option value="1" selected>Choose One:</option>
-								<option value="1">01</option>
-								<option value="2">02</option>
-								<option value="3">03</option>
-								<option value="4">04</option>
-								<option value="5">05</option>
-							</select>
+							<p>No. of cores you need?</p>
+							<s:fielderror fieldName="noOfCores"></s:fielderror>
+							<s:select name="noOfCores" id="noOfCores" key="noOfCores"
+								list="#{'null':'Choose one','1':'1','2':'2','3':'3',
+									'4':'4','5':'5','6':'6','7':'7','8':'8','9':'9','10':'10','default':'Unknown'}">
+							</s:select>
 							
 							<!--  
 							<p>Do you require virtual server?</p>
@@ -272,14 +289,20 @@ A computer on which a hypervisor is running one or more virtual machines is defi
 								<option value="virtual_memory_yes">Yes</option>
 								<option value="virtual_memory_no">No</option>
 								<option value="virtual_memory_unknown">Unknown</option>
-							</select>
+							</select> -->
 							<p>Do you require dedicated server?</p>
-							<select id="dedicated_server_requirement" name="dedicated_server_requirement">
-								<option value="dedicated_server_null" selected>Choose One:</option>
-								<option value="dedicated_server_yes">Yes</option>
-								<option value="dedicated_server_no">No</option>
-								<option value="dedicated_server_unknown">Unknown</option>
-							</select> 
+							<s:fielderror fieldName="dedicatedServer"></s:fielderror>
+							<s:select name="dedicatedServer" id="dedicatedServer" key="dedicatedServer"
+								list="#{'null':'Choose one','No':'No','Yes':'Yes','default':'Unknown'}">
+							</s:select>
+							
+							<%-- <select id="dedicatedServer" name="dedicatedServer">
+								<option value="null" selected>Choose One:</option>
+								<option value="yes">Yes</option>
+								<option value="no">No</option>
+								<option value="default">Unknown</option>
+							</select>  --%>
+								<!-- 
 							 <p>Do you require hypervisor?</p>
 							<select id="hypervisor_requirement" name="hypervisor_requirement">
 								<option value="hypervisor_null" selected>Choose One:</option>
@@ -289,28 +312,41 @@ A computer on which a hypervisor is running one or more virtual machines is defi
 							</select>
 							-->
 							<p>What's your operating system</p>
-							<select id="operating_system" name="operating_system">
-								<option value="operating_system_null" selected>Choose One:</option>
-								<option value="operating_system_1">Windows Server 2008R2</option>
-								<option value="operating_system_2">Windows Server 7</option>
-								<option value="operating_system_3">Linux Redhat Server 7</option>
-								<option value="operating_system_4">ESXi 5.5</option>
-								<option value="operating_system_unknown">Unknown</option>
-							</select>
+							<s:fielderror fieldName="operatingSystem"></s:fielderror>
+							<s:select name="operatingSystem" id="operatingSystem" key="operatingSystem" 
+								list="#{'null':'Choose One','centOs_6':'Cent OS 6','cent_os_7':'Cent OS 7',
+									'debian_os_6':'Debian 6','debian_os_7':'Debian 7','debian_os_8':'Debian 8',
+									'fedora_os_24':'Fedora 24','ubuntu_os_12':'Ubuntu 12','ubuntu_os_14':'Ubuntu 14',
+									'ubuntu_os_16':'Ubuntu 16','redhat_os_7':'Linux Redhat Server 7',
+									'win_os_2008R2':'Windows Server 2008R2','win_os_7':'Windows Server 7',
+									'default':'Unknown'}">
+							</s:select>
+							
+							<p>Architecture of Operating System</p>
+							<s:fielderror fieldName="osArchitecture"></s:fielderror>
+							<s:select name="osArchitecture" id="osArchitecture" key="osArchitecture"
+								list="#{'null':'Choose One','32 bit':'32 bit','64 bit':'64 bit','default':'Unknown'}">
+							</s:select>
 							
 							<p>What's the size of your RAM</p>
-							<input type="text" class="textbox" name="computation_RAM" value="RAM Size"
-								onfocus="this.value = '';"
-								onblur="if (this.value == '') {this.value = 'RAM Size';}"/>
+							<s:fielderror fieldName="ramSize"></s:fielderror>
+							<s:select name="ramSize" id="ramSize" key="ramSize" 
+								list="#{'null':'Choose One','512MB - 1GB':'512MB - 1GB','1GB - 2GB':'1GB - 2GB',
+								'2GB - 4GB':'2GB - 4GB','4GB - 8GB':'4GB - 8GB','8GB - 12GB':'8GB - 12GB',
+								'12GB - 16GB':'12GB - 16GB','16GB - 32GB':'16GB - 32GB','32GB - 64GB':'32GB - 64GB',
+								'64GB - 128GB':'64GB - 128GB'}">
+							</s:select>
 							
 							<p>Do you require dedicated GPU?</p>
-							<select id="dedicated_GPU_requirement" name="dedicated_GPU_requirement">
-								<option value="dedicated_GPU_null" selected>Choose One:</option>
-								<option value="dedicated_GPU_yes">Yes</option>
-								<option value="dedicated_GPU_no">No</option>
-								<option value="dedicated_GPU_unknown">Unknown</option>
-							</select> 
-						
+							<s:fielderror fieldName="gpu"></s:fielderror>
+							<s:select name="gpu" id="gpu" key="gpu"
+								list="#{'No':'No','Yes':'Yes','default':'Unknown'}">
+							</s:select>
+							
+							<!--  dynamically generated by java script based on the value of gpu requirement -->
+							<div id="dynamic_gpu_size">
+							
+							</div>
 							
 							<input type="submit" value="Submit">
 						</s:form></div>

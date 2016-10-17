@@ -3,97 +3,88 @@ package com.geni.actions;
 import com.geni.beans.NetworkARI;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
 
-public class NetworkInformation extends ActionSupport {
+public class NetworkInformation extends ActionSupport implements ModelDriven<NetworkARI>{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String bandwidth;		// bandwidth of the network
-	private String isolated;		// layer L2 or L3
-	private String NFV; 			// nfv capability
-	private String resourceType; 	// wiered or sdn
+	
+	private NetworkARI network = new NetworkARI();
 
-	public String getBandwidth() {
-		return bandwidth;
+	public NetworkARI getNetwork() {
+		return network;
 	}
 
-	public void setBandwidth(String bandwidth) {
-		this.bandwidth = bandwidth;
+	public void setNetwork(NetworkARI network) {
+		this.network = network;
 	}
-
-	public String getIsolated() {
-		return isolated;
+	
+	public void validate () {
+		if (network.getBandwidth().equals("null")) {
+			addFieldError("bandwidth", "Please choose bandwidth");
+		}
+		if (network.getLayer().equals("null")) {
+			addFieldError("layer", "Please choose a layer");
+		}
 	}
-
-	public void setIsolated(String isolated) {
-		this.isolated = isolated;
-	}
-
-	public String getNFV() {
-		return NFV;
-	}
-
-	public void setNFV(String nFV) {
-		NFV = nFV;
-	}
-
-	public String getResourceType() {
-		return resourceType;
-	}
-
-	public void setResourceType(String resourceType) {
-		this.resourceType = resourceType;
-	}
-
-
+	
 	public String getNetworkInformation() {
 		
-		System.out.println(this.getBandwidth());
-		System.out.println(this.getIsolated());
-		System.out.println(this.getNFV());
-		System.out.println(this.getResourceType());
-		//
-		NetworkARI network = new NetworkARI();
-
-		// set network bandwidth
-		if (this.getBandwidth().equals("bandwidth_opt1")) {
-			network.setBandwidth("10Mbps");
-		} else if (this.getBandwidth().equals("bandwidth_opt2")) {
-			network.setBandwidth("20Mbps");
-		} else if (this.getBandwidth().equals("bandwidth_opt3")) {
-			network.setBandwidth("1Gbps");
-		} else if (this.getBandwidth().equals("bandwidth_opt4")) {
-			network.setBandwidth("10Gbps");
-		} else if (this.getBandwidth().equals("bandwidth_opt5")) {
-			network.setBandwidth("100Gbps");
-		} else {
-			network.setBandwidth(null);
+		System.out.println(network.getBandwidth());
+		System.out.println(network.getIsolated());
+		System.out.println(network.getLayer());
+		System.out.println(network.getIp());
+		System.out.println(network.getNfv());
+		System.out.println(network.getNetworkType());
+		
+		//set default bandwidth
+		if (network.getBandwidth().equals("default")) {
+			network.setBandwidth("10-20Mbps");
 		}
 		
-		// set network layer type
-		if (this.getResourceType().equals("resourceType_wired")) {
-			network.setNetworkType("wired");
-		} else {
-			network.setNetworkType("sdn");
+		//set default isolated
+		if (network.getIsolated().equals("default")) {
+			network.setIsolated("no");
 		}
 		
-		//set nfv capability
-		if (this.getNFV().equals("NFV_no")) {
-			network.setNfv("yes");
-		} else {
+		//set default layer
+		if (network.getLayer().equals("default")) {
+			network.setLayer("l3");
+		}
+		
+		//set default ip
+		if (network.getIp().equals("default")) {
+			network.setIp("public");
+		}
+		
+		//set default nfv
+		if (network.getNfv().equals("default")) {
 			network.setNfv("no");
 		}
 		
-		//set isolated or vpn
-		if (this.getIsolated().equals("isolated_no")) {
-			network.setLayer("L3");
+		//set default networkType
+		if (network.getNetworkType().equals("default")) {
+			network.setNetworkType("wired");
+		}
+		
+		//set isolated or vpn and layer
+		if (network.getIsolated().equals("yes") || network.getLayer().equals("l2")) {
+			network.setLayer("l2");
 		} else {
-			network.setLayer("L4");
+			network.setLayer("l3");
 		}
 		
 		ActionContext ctx = ActionContext.getContext();
 		ctx.getSession().put("network", network);
+		
 		return SUCCESS;
 	}
+
+	@Override
+	public NetworkARI getModel() {
+		return network;
+	}
+
 }

@@ -12,25 +12,30 @@
 			<result name="input">/general.jsp</result>
 			<result name="success">/network.jsp</result>
 		</action>
-
 		<action name="getNectworkConnectivity" class="com.geni.actions.NetworkInformation"
 			method="getNetworkInformation">
-			<result name="input">/login.jsp</result>
-			<result name="error">/error.jsp</result>
+			<result name="input">/network.jsp</result>
 			<result name="success">/storage.jsp</result>
 		</action>
-
 		<action name="getStorage" class="com.geni.actions.StorageInformation"
 			method="getStorageInformation">
-			<result name="input">/login.jsp</result>
-			<result name="error">/error.jsp</result>
+			<result name="input">/storage.jsp</result>
 			<result name="success">/computation.jsp</result>
 		</action>
 		<action name="getComputation" class="com.geni.actions.ComputationInformation"
 			method="getComputationInformation">
-			<result name="input">/login.jsp</result>
-			<result name="error">/error.jsp</result>
+			<result name="input">/computation.jsp</result>
+			<result name="success">/softwares.jsp</result>
+		</action>
+		<action name="getSoftware" class="com.geni.actions.SoftwareInformation"
+			method="getSoftwareInformation">
+			<result name="input">/softwares.jsp</result>
 			<result name="success">/review.jsp</result>
+		</action>
+		<action name="getCTXML" class="com.geni.actions.CustomTemplate"
+			method="getCTXML">
+			<result name="input"></result>
+			<result name="success">/xmlOutput.jsp</result>
 		</action>
 
 	</package>

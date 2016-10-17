@@ -1,12 +1,14 @@
 package com.geni.beans;
 
 public class ApplicationRI {
+	
 	private String emailID;
 	private String apprID;
 	private GeneralARI general;
 	private NetworkARI network;
 	private StorageARI storage;
 	private ComputationARI computation;
+	private SoftwareARI software;
 	
 	public String getEmailID() {
 		return emailID;
@@ -43,6 +45,12 @@ public class ApplicationRI {
 	}
 	public void setComputation(ComputationARI computation) {
 		this.computation = computation;
+	}
+	public SoftwareARI getSoftware() {
+		return software;
+	}
+	public void setSoftware(SoftwareARI software) {
+		this.software = software;
 	}
 	
 }

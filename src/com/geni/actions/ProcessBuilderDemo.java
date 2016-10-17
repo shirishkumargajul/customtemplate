@@ -16,9 +16,9 @@ public class ProcessBuilderDemo extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 
 	public String pythonScript() {
-		ProcessBuilder pb = new ProcessBuilder("python", "/Users/arjun_ac/Desktop/hello.py", "name", "arjun", "age", "23");
+		ProcessBuilder pb = new ProcessBuilder("python", "/Users/arjun_ac/Desktop/geni_deployment.py", "name", "arjun", "age", "23");
 		//ProcessBuilder slkj = new Proce
-		System.out.println("Run echo command");
+		System.out.println("Running the deployment script");
 		try {
 			Process process = pb.start();
 			/*File f = new File("/Users/arjun_ac/Desktop/");

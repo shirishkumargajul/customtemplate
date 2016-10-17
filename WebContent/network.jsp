@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=GB18030">
 <title>Insert title here</title>
+<s:head/>
 </head>
 
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -58,7 +59,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- header-section-ends -->
 <div class="content">
 <div class="contact about-desc">
-<h3>Step 2/4 : Network-Connectivity</h3>
+<h3>Step 2/5 : Network-Connectivity</h3>
 <div class="container">
 <div class="row">
 <div class="col-md-8 contact_left">
@@ -180,30 +181,80 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="contact-form_grid">
 <s:form action="getNectworkConnectivity" method="post" namespace="/">
 	<p>Your minimum bandwidth</p>
-	<select id="bandwidth" name="bandwidth">
-		<option value="bandwidth_null" selected>Choose One:</option>
+	<s:fielderror fieldName="bandwidth"></s:fielderror>
+	<%-- <select id="bandwidth" name="bandwidth">
+		<option value="null" selected>Choose One:</option>
 		<option value="bandwidth_opt1">10-20 Mbps (xy Gb data in t seconds)</option>
 		<option value="bandwidth_opt2">20-100 Mbps (xy Gb data in t seconds)</option>
 		<option value="bandwidth_opt3">1 Gbps (xy Gb data in t seconds)</option>
 		<option value="bandwidth_opt4">10 Gbps (xy Gb data in t seconds)</option>
 		<option value="bandwidth_opt5">100 Gbps (xy Gb data in t seconds)</option>
-	</select>
+		<option value="default">I am not Sure</option>
+	</select> --%>
+	
+	<s:select name="bandwidth" key="bandwidth" 
+		list="#{'null':'Choose One','10-20Mbps':'10-20 Mbps (xy Gb data in t seconds)',
+	'20-100Mbps':'20-100 Mbps (xy Gb data in t seconds)','1Gbps':'1 Gbps (xy Gb data in t seconds)',
+	'10Gbps':'10 Gbps (xy Gb data in t seconds)','100Gbps':'100 Gbps (xy Gb data in t seconds)',
+	'default':'I am not sure'}">
+	</s:select>
+	
 	<p>Do you need VPN (or isolated) network ?</p>
-	<select id="isolated" name="isolated">
+	<s:select name="isolated" key="isolated" 
+		list="#{'no':'No','yes':'Yes','default':'I am not sure'}">
+	</s:select>
+	
+<%-- 	<select id="isolated" name="isolated">
 		<option value="isolated_no" selected>No</option>
 		<option value="isolated_yes">Yes</option>
-	</select>
+		<option value="default">I am not Sure</option>
+	</select> --%>
+	
+	<p>Network Layer :</p>
+	<s:fielderror fieldName="layer"></s:fielderror>
+	<s:select name="layer" key="layer" 
+		list="#{'null':'Choose One:','l2':'Layer 2','l3':'Layer 3','default':'I am not sure'}">
+	</s:select>
+	
+<%-- 	<select id="network_layer" name="network_layer">
+		<option value="null">Choose One:</option>
+		<option value="l2">L2</option>
+		<option value="l3">L3</option>
+		<option value="default">I am not Sure</option>
+	</select> --%>
+	
+	<p>Public or Private IP address ?</p>
+	<s:select name="ip" key="ip" 
+		list="#{'public':'Public IP','private':'Private IP','default':'I am not sure'}">
+	</s:select>
+	
+<%-- 	<select id="ip_address" name="ip_address">
+		<option value="public_ip">Public IP</option>
+		<option value="private_ip">Private IP</option>
+		<option value="default">I am not Sure</option>
+	</select> --%>
+	
 	<p>Do you need NFV capability ?</p>
-	<select id="NFV" name="NFV">
+	<s:select name="nfv" key="nfv" 
+		list="#{'no':'No','yes':'Yes','default':'I am not sure' }">
+	</s:select>
+	
+<%-- 	<select id="NFV" name="NFV">
 		<option value="NFV_no" selected>No</option>
 		<option value="NFV_yes">Yes</option>
-	</select>
+		<option value="default">I am not Sure</option>
+	</select> --%>
 	
 	<p>Which resource do you want ?</p>
-	<select id="resource_type" name="resourceType">
+	<s:select name="networkType" key="networkType" 
+		list="#{'wired':'Wired Connection','sdn':'SDN','default':'I am not Sure' }">
+	</s:select>
+	
+<%-- 	<select id="resource_type" name="resourceType">
 		<option value="resourceType_wired" selected>Wired Connection</option>
 		<option value="resourceType_sdn">SDN</option>
-	</select>
+		<option value="default">I am not Sure</option>
+	</select> --%>
 	
 	<input type="submit" value="Next">
 </s:form></div>

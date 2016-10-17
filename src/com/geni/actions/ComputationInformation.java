@@ -1,97 +1,77 @@
 package com.geni.actions;
 
-import com.geni.beans.ApplicationRI;
 import com.geni.beans.ComputationARI;
-import com.geni.beans.NetworkARI;
-import com.geni.beans.Precondition;
-import com.geni.beans.StorageARI;
-import com.geni.services.ARI_Generation_Service;
-import com.geni.services.MacroOperatorService;
-import com.geni.services.PreconditionService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
 
-public class ComputationInformation extends ActionSupport{
-	/**
-	 * 
-	 */
+public class ComputationInformation extends ActionSupport implements ModelDriven<ComputationARI>{
+
 	private static final long serialVersionUID = 1L;
-	private int vm_cores;
-	private String operating_system;
-	private String dedicated_GPU_requirement;
-	private String computation_RAM;
 	
-	public int getVm_cores() {
-		return vm_cores;
+	private ComputationARI computation = new ComputationARI();
+	
+	public ComputationARI getComputation() {
+		return computation;
 	}
 
-	public void setVm_cores(int vm_cores) {
-		this.vm_cores = vm_cores;
-	}
-
-	public String getOperating_system() {
-		return operating_system;
-	}
-
-	public void setOperating_system(String operating_system) {
-		this.operating_system = operating_system;
-	}
-
-	public String getDedicated_GPU_requirement() {
-		return dedicated_GPU_requirement;
-	}
-
-	public void setDedicated_GPU_requirement(String dedicated_GPU_requirement) {
-		this.dedicated_GPU_requirement = dedicated_GPU_requirement;
-	}
-
-	public String getComputation_RAM() {
-		return computation_RAM;
-	}
-
-	public void setComputation_RAM(String computation_RAM) {
-		this.computation_RAM = computation_RAM;
+	public void setComputation(ComputationARI computation) {
+		this.computation = computation;
 	}
 	
-	public boolean isRamSizeValid() {
-		return true;
+	public void validate() {
+		if (computation.getNoOfCores().equals("null")) {
+			addFieldError("noOfCores", "Please choose no of cores");
+		}
+		if (computation.getDedicatedServer().equals("null")) {
+			addFieldError("dedicatedServer", "Please choose dedicated server");
+		}
+		if (computation.getOperatingSystem().equals("null")) {
+			addFieldError("operatingSystem", "Please choose operating system");
+		}
+		if (computation.getOsArchitecture().equals("null")) {
+			addFieldError("osArchitecture", "Please choose architecture");
+		}
+		if (computation.getRamSize().equals("null")) {
+			addFieldError("ramSize", "Please choose ram size");
+		}
 	}
-
+	
 	public String getComputationInformation() {
 		
-		System.out.println(this.getVm_cores());
-		System.out.println(this.getOperating_system());
-		System.out.println(this.getDedicated_GPU_requirement());
-		System.out.println(this.getComputation_RAM());
+		System.out.println(computation.getNoOfCores());
+		System.out.println(computation.getDedicatedServer());
+		System.out.println(computation.getOperatingSystem());
+		System.out.println(computation.getOsArchitecture());
+		System.out.println(computation.getRamSize());
+		System.out.println(computation.getGpu());
+		System.out.println();
 		
-		ComputationARI computation = new ComputationARI();
-		
-		//set no. of vm instances
-		computation.setNoOfVmInstances(this.getVm_cores());
-		
-		//set operating system
-		if(this.getOperating_system().equals("operating_system_1")){
-			computation.setOperatingSystem("Windows Server 2008R2");
-		}else if(this.getOperating_system().equals("operating_system_2")){
-			computation.setOperatingSystem("Windows Server 7");
-		}else if(this.getOperating_system().equals("operating_system_3")){
-			computation.setOperatingSystem("Linux Redhat Server 7");
-		}else if(this.getOperating_system().equals("operating_system_4")){
-			computation.setOperatingSystem("ESXi 5.5");
-		}else{
-			computation.setOperatingSystem("Ubuntu Server");
+		//set default vm cores 
+		if (computation.getNoOfCores().equals("null")) {
+			computation.setNoOfCores("1");
 		}
 		
-		//set RAM size
-		if (isRamSizeValid()) {
-			computation.setRamSize(this.getComputation_RAM());
+		//set default dedicated server
+		if (computation.getDedicatedServer().equals("null")) {
+			computation.setDedicatedServer("No");
 		}
 		
-		//set GPU requirement
-		if (this.getDedicated_GPU_requirement().equals("dedicated_GPU_yes")) {
-			computation.setGpu("yes");
-		} else {
-			computation.setGpu("no");
+		//set default operating system
+		if (computation.getOperatingSystem().equals("null")) {
+			computation.setOperatingSystem("ubuntu_os_14");
+		}
+		
+		//set default os architecture
+		if (computation.getOsArchitecture().equals("null") && 
+				(!computation.getRamSize().equals("512MB - 1GB") && !computation.getRamSize().equals("1GB - 2GB") && 
+						!computation.getRamSize().equals("2GB - 4GB")) ) {
+			computation.setOsArchitecture("64 bit");
+		}
+		
+		//set default GPU
+		if (computation.getGpu().equals("null")) {
+			computation.setGpu("No");
 		}
 		
 		ActionContext ctx = ActionContext.getContext();
@@ -107,42 +87,10 @@ public class ComputationInformation extends ActionSupport{
 		}*/
 		
 	}
-	
-	public boolean generateARI() {
-		boolean flag = false;
-		
-		ARI_Generation_Service ARIservice = new ARI_Generation_Service();
-		
-		
-		ActionContext ctx = ActionContext.getContext();
-		
-		String emailID = (String) ctx.getSession().get("emailid");
-		NetworkARI network = (NetworkARI) ctx.getSession().get("network");
-		StorageARI storage = (StorageARI) ctx.getSession().get("storage");
-		ComputationARI computation = (ComputationARI) ctx.getSession().get("computation");
-		
-		ApplicationRI ARI = ARIservice.generateARI(emailID, network, storage, computation);
-		flag = ARIservice.insertARI(ARI);
-		
-		MacroOperatorService macro_service = new MacroOperatorService();
-		macro_service.MacroOperatorGeneration(Integer.parseInt(ARI.getApprID()));
-		return flag;
-	}
-	
-	//added by arjun
-	public boolean generatePrecondition() {
-		PreconditionService precondtionService = new PreconditionService();
-		
-		ActionContext ctx = ActionContext.getContext();
-		
-		String emailID = (String) ctx.getSession().get("emailid");
-		NetworkARI network = (NetworkARI) ctx.getSession().get("network");
-		StorageARI storage = (StorageARI) ctx.getSession().get("storage");
-		ComputationARI computation = (ComputationARI) ctx.getSession().get("computation");
-		
-		Precondition preconditon = precondtionService.generatePrecondition(emailID, network, storage, computation);
-		System.out.println(preconditon.toString());
-		return true;
+
+	@Override
+	public ComputationARI getModel() {
+		return computation;
 	}
 	
 }

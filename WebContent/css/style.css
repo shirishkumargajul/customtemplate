@@ -2969,3 +2969,9 @@ PRICING TABLES ONE STYLES
         padding: 20px;
         color: #fff;
     }
+
+#added by arjun for error messages displayed by server
+.errorMessage {
+	color:red;
+	list-style: none;
+}

@@ -7,8 +7,27 @@
 <meta http-equiv="Content-Type" content="text/html; charset=GB18030">
 <title>Storage</title>
 <script>
-
+function toggleRemoteStorage() {
+	var rStorage = document.getElementById("remoteStorage").value;
+	alert(rStorage);
+	var p_val1 = document.getElementById("p_remote_storage_size");
+	var s_val1 = document.getElementById("s_remote_storage_size");
+	if (rStorage == "Yes") {
+		var p_html = "<p>Your remote storage capacity requirement</p> \
+			<s\:fielderror fieldName=\"remoteStorageSize\"></s\:fielderror>";
+		var s_html = "<s\:select list=\"\" name=\"remoteStorageSize\" id="" key=\"remoteStorageSize\"></s\:select>";
+		p_val1.innerHTML = p_html;
+		s_val1.innerHTML = s_html;
+	} else {
+		p_val1.innerHTML = "";
+		s_val1.innerHTML = "";
+	}
+}
 </script>
+
+<style>
+
+</style>
 </head>
 
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -61,7 +80,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- header-section-ends -->
 <div class="content">
 <div class="contact about-desc">
-<h3>Step 3/4 : Storage</h3>
+<h3>Step 3/5 : Storage</h3>
 <div class="container">
 <div class="row">
 <div class="col-md-8 contact_left">
@@ -164,41 +183,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="contact-form_grid">
 				<s:form action="getStorage" method="post" namespace="/">
 				
-					<p>Your storage capacity requirement</p>
-					<input type="text" class="textbox" name="storage_size" value="Storage Size"
-						onfocus="this.value = '';"
-						onblur="if (this.value == '') {this.value = 'Storage Size';}">
+					<p>Your local storage capacity requirement</p>
+					<s:fielderror fieldName="localStorageSize"></s:fielderror>
+					<s:select name="localStorageSize" key="localStorageSize" 
+						list="#{'null':'Choose One:','10GB':'10GB','20GB':'20GB','20GB-60GB':'20GB - 60GB',
+						 '60GB-100GB':'60GB - 100GB','100GB-250GB':'100GB - 250GB','250GB-500GB':'250GB - 500GB',
+						 '500GB-1TB':'500GB - 1TB','1TB-2TB':'1TB - 2TB','2TB-5TB':'2TB - 5TB','5TB-10TB':'5TB - 10TB',
+						 '10TB-500TB':'10TB - 500TB'}">
+					</s:select>
+					
+					<p>Which kind of local storage do you want</p>
+					<s:fielderror fieldName="localStorageDisk"></s:fielderror>
+					<s:select name="localStorageDisk" key="localStorageDisk" 
+						list="#{'null':'Choose one:','HDD':'HDD','SSD':'SSD','default':'Unknown' }">
+					</s:select>
+				
+					<p>Do you need remote storage</p>
+					<s:fielderror fieldName="remoteStorage"></s:fielderror>
+					<s:select name="remoteStorage" key="remoteStorage" id="remoteStorage" onchange="toggleRemoteStorage()"
+						list="#{'null':'Chose One','No':'No','Yes':'Yes','default':'Unknown'}">
+					</s:select>
+					
+					<!-- Content of the following division is dynamiclly added by javascript based on the remote storage requirement -->
+					<div id="p_remote_storage_size">
 						
-					<p>The type of your storage</p>
-					<select id="storage_type" name="storage_type" onBlur="toggleLocation()">
-						<option value="storage_null" selected>Choose One:</option>
-						<option value="storage_local">Local Storage</option>
-						<option value="storage_remote">Remote Storage</option>
-						<option value="storage_unknown">Unknown</option>
-					</select>
+					</div>
+					<div id="s_remote_storage_size">
+						
+					</div>
 					
-					<p>Geo-location of the datacenter where you want to store your data?</p>
-					<select id="storage_location" name="storage_location">
-						<option value="storage_location_null" selected>Choose One:</option>
-						<option value="storage_location_east">East coast</option>
-						<option value="storage_location_central">Central</option>
-						<option value="storage_location_west">West coast</option>
-					</select>
-					
-					<p>Which kind of storage do you want</p>
-					<select id="storage_drive" name="storage_drive">
-						<option value="storage_drive_null" selected>Choose One:</option>
-						<option value="storage_drive_HDD">HDD</option>
-						<option value="storage_drive_SSD">SSD</option>
-						<option value="storage_drive_unknown">Unknown</option>
-					</select>
-					<p>Do you need backup your storage</p>
+				<%-- 	<p>Do you need backup your storage</p>
 					<select id="storage_backup" name="storage_backup">
-						<option value="storage_backup_null" selected>Choose One:</option>
+						<option value="null" selected>Choose One:</option>
 						<option value="storage_backup_yes">Yes</option>
 						<option value="storage_backup_no">No</option>
-						<option value="storage_backup_unknown">Unknown</option>
-					</select>
+						<option value="default">Unknown</option>
+					</select> --%>
 				
 					<input type="submit" value="Next">
 				</s:form>

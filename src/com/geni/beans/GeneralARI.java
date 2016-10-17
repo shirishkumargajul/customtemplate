@@ -3,9 +3,9 @@ package com.geni.beans;
 public class GeneralARI {
 	private String appName;
 	private String appKind;
-	private String [] computePriority;
-	private String [] networkPriority;
-	private String [] storagePriority;
+	private String appPriority;
+	private String appDataSize;
+	private int noOfNodes;
 	
 	public String getAppName() {
 		return appName;
@@ -19,24 +19,23 @@ public class GeneralARI {
 	public void setAppKind(String appKind) {
 		this.appKind = appKind;
 	}
-	public String[] getComputePriority() {
-		return computePriority;
+	public int getNoOfNodes() {
+		return noOfNodes;
 	}
-	public void setComputePriority(String[] computePriority) {
-		this.computePriority = computePriority;
+	public void setNoOfNodes(int noOfNodes) {
+		this.noOfNodes = noOfNodes;
 	}
-	public String[] getNetworkPriority() {
-		return networkPriority;
+	public String getAppPriority() {
+		return appPriority;
 	}
-	public void setNetworkPriority(String[] networkPriority) {
-		this.networkPriority = networkPriority;
+	public void setAppPriority(String appPriority) {
+		this.appPriority = appPriority;
 	}
-	public String[] getStoragePriority() {
-		return storagePriority;
+	public String getAppDataSize() {
+		return appDataSize;
 	}
-	public void setStoragePriority(String[] storagePriority) {
-		this.storagePriority = storagePriority;
+	public void setAppDataSize(String appDataSize) {
+		this.appDataSize = appDataSize;
 	}
-	
 	
 }
