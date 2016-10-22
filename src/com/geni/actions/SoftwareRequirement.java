@@ -12,7 +12,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
-public class SoftwareInformation extends ActionSupport implements ModelDriven<SoftwareARI>{
+public class SoftwareRequirement extends ActionSupport implements ModelDriven<SoftwareARI>{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -26,23 +26,34 @@ public class SoftwareInformation extends ActionSupport implements ModelDriven<So
 		this.software = software;
 	}
 	
-	public void validate() {
+	public boolean isValid() {
+		boolean val = true;
 		if (StringUtils.isNullOrEmpty(software.getWebServer())) {
 			addFieldError("webServer", "Select a web server");
+			val = false;
 		}
 		if (StringUtils.isNullOrEmpty(software.getDatabaseServer())) {
 			addFieldError("databaseServer", "Select a DB server");
+			val = false;
 		}
+		return val;
 	}
 	
-	public String getSoftwareInformation() {
-		
-		System.out.println(software.getWebServer());
-		System.out.println(software.getDatabaseServer());
-		
-		ActionContext ctx = ActionContext.getContext();
-		ctx.getSession().put("software", software);
-		return SUCCESS;
+	public String display() {
+		return NONE;
+	}
+	
+	public String setSoftwareReq() {
+		if (!isValid()) {
+			return INPUT;
+		} else {
+			System.out.println(software.getWebServer());
+			System.out.println(software.getDatabaseServer());
+			
+			ActionContext ctx = ActionContext.getContext();
+			ctx.getSession().put("software", software);
+			return SUCCESS;
+		}
 	}
 	
 	public boolean generateARI() {

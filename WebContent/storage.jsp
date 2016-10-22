@@ -181,27 +181,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="col-md-4">
 		<div class="contact_right">
 			<div class="contact-form_grid">
-				<s:form action="getStorage" method="post" namespace="/">
+				<s:form action="setStorageReq" method="post" namespace="/">
 				
-					<p>Your local storage capacity requirement</p>
+					<p><s:text name="localStorageSize"></s:text></p>
 					<s:fielderror fieldName="localStorageSize"></s:fielderror>
-					<s:select name="localStorageSize" key="localStorageSize" 
-						list="#{'null':'Choose One:','10GB':'10GB','20GB':'20GB','20GB-60GB':'20GB - 60GB',
-						 '60GB-100GB':'60GB - 100GB','100GB-250GB':'100GB - 250GB','250GB-500GB':'250GB - 500GB',
-						 '500GB-1TB':'500GB - 1TB','1TB-2TB':'1TB - 2TB','2TB-5TB':'2TB - 5TB','5TB-10TB':'5TB - 10TB',
-						 '10TB-500TB':'10TB - 500TB'}">
+					<s:select name="localStorageSize" key="localStorageSize" headerKey="null"
+						headerValue="Choose one" list="storageSizeList" value="defaultStorageSize">
 					</s:select>
 					
-					<p>Which kind of local storage do you want</p>
+					<p><s:text name="localStorageDisk"></s:text></p>
 					<s:fielderror fieldName="localStorageDisk"></s:fielderror>
-					<s:select name="localStorageDisk" key="localStorageDisk" 
-						list="#{'null':'Choose one:','HDD':'HDD','SSD':'SSD','default':'Unknown' }">
+					<s:select name="localStorageDisk" key="localStorageDisk" headerKey="null"
+						headerValue="Choose one" list="storageDiskList" value="defaultStorageDisk">
 					</s:select>
 				
-					<p>Do you need remote storage</p>
+					<p><s:text name="remoteStorage"></s:text></p>
 					<s:fielderror fieldName="remoteStorage"></s:fielderror>
 					<s:select name="remoteStorage" key="remoteStorage" id="remoteStorage" onchange="toggleRemoteStorage()"
-						list="#{'null':'Chose One','No':'No','Yes':'Yes','default':'Unknown'}">
+						headerKey="null" headerValue="Choose one" list="yesOrNoList" value="defaultRemoteStorage">
 					</s:select>
 					
 					<!-- Content of the following division is dynamiclly added by javascript based on the remote storage requirement -->
@@ -211,14 +208,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div id="s_remote_storage_size">
 						
 					</div>
-					
-				<%-- 	<p>Do you need backup your storage</p>
-					<select id="storage_backup" name="storage_backup">
-						<option value="null" selected>Choose One:</option>
-						<option value="storage_backup_yes">Yes</option>
-						<option value="storage_backup_no">No</option>
-						<option value="default">Unknown</option>
-					</select> --%>
 				
 					<input type="submit" value="Next">
 				</s:form>

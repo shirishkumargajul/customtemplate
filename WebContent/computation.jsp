@@ -258,9 +258,9 @@ A computer on which a hypervisor is running one or more virtual machines is defi
 		<div class="col-md-4">
 				<div class="contact_right">
 					<div class="contact-form_grid">
-						<s:form action="getComputation" method="post" namespace="/">
+						<s:form action="setComputationReq" method="post" namespace="/">
 						
-							<p>No. of cores you need?</p>
+							<p><s:text name="noOfCores"></s:text></p>
 							<s:fielderror fieldName="noOfCores"></s:fielderror>
 							<s:select name="noOfCores" id="noOfCores" key="noOfCores"
 								list="#{'null':'Choose one','1':'1','2':'2','3':'3',
@@ -290,7 +290,7 @@ A computer on which a hypervisor is running one or more virtual machines is defi
 								<option value="virtual_memory_no">No</option>
 								<option value="virtual_memory_unknown">Unknown</option>
 							</select> -->
-							<p>Do you require dedicated server?</p>
+							<p><s:text name="dedicatedServer"></s:text></p>
 							<s:fielderror fieldName="dedicatedServer"></s:fielderror>
 							<s:select name="dedicatedServer" id="dedicatedServer" key="dedicatedServer"
 								list="#{'null':'Choose one','No':'No','Yes':'Yes','default':'Unknown'}">
@@ -311,7 +311,7 @@ A computer on which a hypervisor is running one or more virtual machines is defi
 								<option value="hypervisor_unknown">Unknown</option>
 							</select>
 							-->
-							<p>What's your operating system</p>
+							<p><s:text name="operatingSystem"></s:text></p>
 							<s:fielderror fieldName="operatingSystem"></s:fielderror>
 							<s:select name="operatingSystem" id="operatingSystem" key="operatingSystem" 
 								list="#{'null':'Choose One','centOs_6':'Cent OS 6','cent_os_7':'Cent OS 7',
@@ -328,7 +328,7 @@ A computer on which a hypervisor is running one or more virtual machines is defi
 								list="#{'null':'Choose One','32 bit':'32 bit','64 bit':'64 bit','default':'Unknown'}">
 							</s:select> --%>
 							
-							<p>What's the size of your RAM</p>
+							<p><s:text name="ramSize"></s:text></p>
 							<s:fielderror fieldName="ramSize"></s:fielderror>
 							<s:select name="ramSize" id="ramSize" key="ramSize" 
 								list="#{'null':'Choose One','512MB - 1GB':'512MB - 1GB','1GB - 2GB':'1GB - 2GB',
@@ -337,7 +337,7 @@ A computer on which a hypervisor is running one or more virtual machines is defi
 								'64GB - 128GB':'64GB - 128GB'}">
 							</s:select>
 							
-							<p>Do you require dedicated GPU?</p>
+							<p><s:text name="gpu"></s:text></p>
 							<s:fielderror fieldName="gpu"></s:fielderror>
 							<s:select name="gpu" id="gpu" key="gpu"
 								list="#{'No':'No','Yes':'Yes','default':'Unknown'}">

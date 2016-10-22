@@ -7,41 +7,40 @@
 
 	<package name="userRequirements" extends="struts-default">
 		
-<!-- 		<action name="getGeneralInfo" class="com.geni.actions.GeneralInformation"
-			method="display">
-			<result name="none">/general.jsp</result>
-		</action> -->
-		
-		<action name="getGeneralInfo" class="com.geni.actions.GeneralInformation"
-			method="getGeneralInfo">
+		<action name="setGeneralReq" class="com.geni.actions.GeneralRequirement"
+			method="setGeneralReq">
 			<result name="input">/general.jsp</result>
-			<result name="success">/network.jsp</result>
+			<result name="success" type="redirectAction">
+            	<param name="actionName">getNetworkReq</param>
+        	</result>
 		</action> 
-		
-		<!-- <action name="getNetwork" class="com.geni.actions.NetworkInformation"
-			method="display">
-			<result name="none">/network.jsp</result>
-		</action> -->
-		
-		<action name="getNectworkConnectivity" class="com.geni.actions.NetworkInformation"
-			method="getNetworkInformation">
+		<action name="setNetworkReq" class="com.geni.actions.NetworkRequirement"
+			method="setNetworkReq">
 			<result name="input">/network.jsp</result>
-			<result name="success">/storage.jsp</result>
+			<result name="success" type="redirectAction">
+            	<param name="actionName">getStorageReq</param>
+        	</result>
 		</action>
-		<action name="getStorage" class="com.geni.actions.StorageInformation"
-			method="getStorageInformation">
+		<action name="setStorageReq" class="com.geni.actions.StorageRequirement"
+			method="setStorageReq">
 			<result name="input">/storage.jsp</result>
-			<result name="success">/computation.jsp</result>
+			<result name="success" type="redirectAction">
+            	<param name="actionName">getComputationReq</param>
+        	</result>
 		</action>
-		<action name="getComputation" class="com.geni.actions.ComputationInformation"
-			method="getComputationInformation">
+		<action name="setComputationReq" class="com.geni.actions.ComputationRequirement"
+			method="setComputationReq">
 			<result name="input">/computation.jsp</result>
-			<result name="success">/softwares.jsp</result>
+			<result name="success" type="redirectAction">
+            	<param name="actionName">getSoftwareReq</param>
+        	</result>
 		</action>
-		<action name="getSoftware" class="com.geni.actions.SoftwareInformation"
-			method="getSoftwareInformation">
+		<action name="setSoftwareReq" class="com.geni.actions.SoftwareRequirement"
+			method="setSoftwareReq">
 			<result name="input">/softwares.jsp</result>
-			<result name="success">/review.jsp</result>
+			<result name="success" type="redirectAction">
+            	<param name="actionName">getReqReview</param>
+        	</result>
 		</action>
 		<action name="getCTXML" class="com.geni.actions.CustomTemplate"
 			method="getCTXML">

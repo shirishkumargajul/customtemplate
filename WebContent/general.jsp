@@ -10,7 +10,14 @@
 
 </script>
 
-<s:head/>
+<style>
+#added by arjun for error messages displayed by server
+.errorMessage {
+	color: 		red;
+	list-style: none;
+}
+
+</style>
 </head>
 
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -42,12 +49,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <span class="menu"></span>
 <div class="top-menu">
 <ul>
-	<li><a href="index.html">Home</a></li>
-	<li><a href="404.html">Products</a></li>
-	<li><a href="about.hmtl">About Us</a></li>
-	<li><a href="services.html">Services</a></li>
-	<li><a href="login.jsp">Account</a></li>
-	<li><a class="active" href="general.jsp">Start</a></li>
+	<li><s:text name="link.home"></s:text></li>
+	<li><s:text name="link.products"></s:text></li>
+	<li><s:text name="link.about"></s:text></li>
+	<li><s:text name="link.servecies"></s:text></li>
+	<li><s:text name="link.account"></s:text></li>
+	<li><s:text name="link.start"></s:text></li>
 </ul>
 </div>
 <!-- script for menu --> <script>
@@ -147,44 +154,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="contact_right">
 			<div class="contact-form_grid">
 			
-				<s:form action="getGeneralInfo" method="post" namespace="/">
+				<s:form action="setGeneralReq" method="post" namespace="/">
 				
-					<p>Application Name</p>
+					<p><s:text name="appName"></s:text></p>
 					<s:fielderror fieldName="appName"></s:fielderror>
 					<s:textfield class="textbox" name="appName" key="appName" />
 					
-					<p>Kind of your application</p>
+					<p><s:text name="appKind"></s:text></p>
 					<s:fielderror fieldName="appKind"></s:fielderror>
-					<s:select name="appKind" key="appKind" 
-						list="#{'null':'Choose One','webApp':'Web Application',
-						'dataIntensive':'Data Intensive','computeIntensive':'Computation Intensive',
-						'missionCritical':'Mission-critical Application','streamingApp':'Live/Streaming Application',
-						'default':'Unknown'}">
+					<s:select name="appKind" key="appKind" headerKey="null"
+						headerValue="Choose one" list="appKindList">
 					</s:select>
 					
-					<p>Priority</p>
+					<p><s:text name="appPriority"></s:text></p>
 					<s:fielderror fieldName="appPriority"></s:fielderror>
-					<s:select name="appPriority" key="appPriority" 
-						list="#{'null':'Choose One:','performance':'High Performance',
-						'availability':'High Availability','throughput':'High Throughput',
-						'default':'Unknown'}">
+					<s:select name="appPriority" key="appPriority" headerKey="null" 
+						headerValue="Choose one" list="appPriorityList">
 					</s:select>
 					
-					<p>Data Size of you Application</p>
+					<p><s:text name="appDataSize"></s:text></p>
 					<s:fielderror fieldName="appDataSize"></s:fielderror>
-					<s:select name="appDataSize" key="appDataSize"
-						list="#{'null':'Choose One:','MB':'MB',
-						'GB':'GB','TB':'TB','default':'Unknown'}">
+					<s:select name="appDataSize" key="appDataSize" headerKey="null"
+						headerValue="Choose one" list="appDataSizeList">
 					</s:select>
 					
-					<p>No of Nodes</p>
-					<s:select id="noOfNodes" name="noOfNodes" key="noOfNodes"
-						list="#{1:1,2:2,3:3,4:4,5:5}">
-					</s:select>
-					
-					<%-- <s:select name="noOfNodes" id="noOfNodes" key="noOfNodes" list="nodeList">
-					</s:select>
-					 --%>
 					<s:submit value="Next" />
 				</s:form>
 			</div>

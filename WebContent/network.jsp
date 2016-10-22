@@ -179,82 +179,38 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="col-md-4">
 <div class="contact_right">
 <div class="contact-form_grid">
-<s:form action="getNectworkConnectivity" method="post" namespace="/">
-	<p>Your minimum bandwidth</p>
+<s:form action="setNetworkReq" method="post" namespace="/">
+	<p><s:text name="bandwidth"></s:text></p>
 	<s:fielderror fieldName="bandwidth"></s:fielderror>
-	<%-- <select id="bandwidth" name="bandwidth">
-		<option value="null" selected>Choose One:</option>
-		<option value="bandwidth_opt1">10-20 Mbps (xy Gb data in t seconds)</option>
-		<option value="bandwidth_opt2">20-100 Mbps (xy Gb data in t seconds)</option>
-		<option value="bandwidth_opt3">1 Gbps (xy Gb data in t seconds)</option>
-		<option value="bandwidth_opt4">10 Gbps (xy Gb data in t seconds)</option>
-		<option value="bandwidth_opt5">100 Gbps (xy Gb data in t seconds)</option>
-		<option value="default">I am not Sure</option>
-	</select> --%>
-	
-	<s:select name="bandwidth" key="bandwidth" 
-		list="#{'null':'Choose One','10-20Mbps':'10-20 Mbps (xy Gb data in t seconds)',
-	'20-100Mbps':'20-100 Mbps (xy Gb data in t seconds)','1Gbps':'1 Gbps (xy Gb data in t seconds)',
-	'10Gbps':'10 Gbps (xy Gb data in t seconds)','100Gbps':'100 Gbps (xy Gb data in t seconds)',
-	'default':'I am not sure'}">
+	<s:select name="bandwidth" key="bandwidth" headerKey="null" 
+		headerValue="Choose one" list="bandwidthList" value="defaultBandwidth">
 	</s:select>
 	
-	<p>Do you need VPN (or isolated) network ?</p>
-	<s:select name="isolated" key="isolated" 
-		list="#{'no':'No','yes':'Yes','default':'I am not sure'}">
+	<p><s:text name="isolated"></s:text></p>
+	<s:select name="isolated" key="isolated" headerKey="null" 
+		headerValue="Choose one" list="yesOrNoList" value="defaultIsolated">
 	</s:select>
 	
-<%-- 	<select id="isolated" name="isolated">
-		<option value="isolated_no" selected>No</option>
-		<option value="isolated_yes">Yes</option>
-		<option value="default">I am not Sure</option>
-	</select> --%>
-	
-	<p>Network Layer :</p>
+	<p><s:text name="layer"></s:text></p>
 	<s:fielderror fieldName="layer"></s:fielderror>
 	<s:select name="layer" key="layer" 
 		list="#{'null':'Choose One:','l2':'Layer 2','l3':'Layer 3','default':'I am not sure'}">
 	</s:select>
 	
-<%-- 	<select id="network_layer" name="network_layer">
-		<option value="null">Choose One:</option>
-		<option value="l2">L2</option>
-		<option value="l3">L3</option>
-		<option value="default">I am not Sure</option>
-	</select> --%>
-	
-	<p>Public or Private IP address ?</p>
-	<s:select name="ip" key="ip" 
-		list="#{'public':'Public IP','private':'Private IP','default':'I am not sure'}">
+	<p><s:text name="ip"></s:text></p>
+	<s:select name="ip" key="ip" headerKey="null" 
+		headerValue="Choose one" list="ipList" value="defaultIp">
 	</s:select>
 	
-<%-- 	<select id="ip_address" name="ip_address">
-		<option value="public_ip">Public IP</option>
-		<option value="private_ip">Private IP</option>
-		<option value="default">I am not Sure</option>
-	</select> --%>
-	
-	<p>Do you need NFV capability ?</p>
-	<s:select name="nfv" key="nfv" 
-		list="#{'no':'No','yes':'Yes','default':'I am not sure' }">
+	<p><s:text name="nfv"></s:text></p>
+	<s:select name="nfv" key="nfv" headerKey="null" 
+		headerValue="Choose one" list="yesOrNoList" value="defaultNfv">
 	</s:select>
 	
-<%-- 	<select id="NFV" name="NFV">
-		<option value="NFV_no" selected>No</option>
-		<option value="NFV_yes">Yes</option>
-		<option value="default">I am not Sure</option>
-	</select> --%>
-	
-	<p>Which resource do you want ?</p>
-	<s:select name="networkType" key="networkType" 
-		list="#{'wired':'Wired Connection','sdn':'SDN','default':'I am not Sure' }">
+	<p><s:text name="networkType"></s:text></p>
+	<s:select name="networkType" key="networkType" headerKey="null" 
+		headerValue="Choose one" list="networkTypeList" value="defaultNetworkType">
 	</s:select>
-	
-<%-- 	<select id="resource_type" name="resourceType">
-		<option value="resourceType_wired" selected>Wired Connection</option>
-		<option value="resourceType_sdn">SDN</option>
-		<option value="default">I am not Sure</option>
-	</select> --%>
 	
 	<input type="submit" value="Next">
 </s:form></div>
