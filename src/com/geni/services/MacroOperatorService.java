@@ -18,19 +18,19 @@ public class MacroOperatorService {
 		this.mod = new MacroOperatorDao();
 	}
 
-	// public MacroOperatorService(int apprid){
+	// public MacroOperatorService(int apprId){
 	// setMo(new MacroOperator());
 	// setMod(new MacroOperatorDao());
-	// this.MacroOperatorGeneration(apprid);
+	// this.MacroOperatorGeneration(apprId);
 	// }
 
-	public boolean MacroOperatorGeneration(int apprid) {
+	public boolean MacroOperatorGeneration(String apprId) {
 		String ack = null;
 
 		List<List<String>> tempPreconditionFeaturesList = new ArrayList<List<String>>();
 		String resourceClass = null;
 		String resource = null;
-		if (mod.getDataFromARI(apprid).equals("SUCCESS")) {
+		if (mod.getDataFromARI(apprId).equals("SUCCESS")) {
 			tempPreconditionFeaturesList = mod.getPreconditionFeaturesList();
 			for (int i = 0; i < tempPreconditionFeaturesList.size(); i++) {
 				String[] features = tempPreconditionFeaturesList.get(i).get(0)
@@ -44,7 +44,7 @@ public class MacroOperatorService {
 							mo.setResource(resource = rsd.findRealResource(mo.getDomain(), resourceClass).size() != 0 ? resourceClass : null);
 							mo.setPrecondition(tempPreconditionFeaturesList
 									.get(i).get(1));
-							mo.setApplicationIdentifie(apprid);
+							mo.setApplicationIdentifie(apprId);
 							mod.insertMacroOperator2Database(mo);
 						}
 					}
@@ -53,7 +53,7 @@ public class MacroOperatorService {
 					mo.setResource(null);
 					mo.setPrecondition(tempPreconditionFeaturesList.get(i).get(
 							1));
-					mo.setApplicationIdentifie(apprid);
+					mo.setApplicationIdentifie(apprId);
 					mod.insertMacroOperator2Database(mo);
 				}
 			}

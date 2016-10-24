@@ -41,7 +41,6 @@
 			<result name="success" type="redirectAction">
             	<param name="actionName">getReqReview</param>
         	</result>
-        	<!-- <result name="success">/delete.jsp</result> -->
 		</action>
 		<action name="getCTXML" class="com.geni.actions.CustomTemplate"
 			method="getCTXML">

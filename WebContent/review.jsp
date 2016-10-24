@@ -142,7 +142,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 			<a href="#" class="btn btn-warning">
 			<span class="fa fa-user-plus"></span>&nbsp;Edit</a>&nbsp; 
-			<a href="/Test_Demo3/getCTXML.action" class="btn btn-success">
+			<a href="/Test_Demo3/createARI.action" class="btn btn-success">
 			<span class="fa fa-refresh"></span>&nbsp;Submit</a>
 			
 			</div>

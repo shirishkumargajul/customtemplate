@@ -123,6 +123,7 @@ public class GeneralRequirement extends ActionSupport implements ModelDriven<Gen
 			}
 	
 			ActionContext ctx = ActionContext.getContext();
+			ctx.getSession().put("emailid", "arjun");
 			ctx.getSession().put("general", general);
 	
 			return SUCCESS;

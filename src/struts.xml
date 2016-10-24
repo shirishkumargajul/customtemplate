@@ -11,6 +11,11 @@
 	<include file="redirect.xml"></include>
 
 	<package name="default" extends="struts-default">
+	
+		<action name="createARI" class="com.geni.actions.CreateARI"
+			method="generateARI">
+			<result name="success">/final.html</result>
+		</action>
 
 		<action name="pythonScript" class="com.geni.actions.ProcessBuilderDemo"
 			method="pythonScript">

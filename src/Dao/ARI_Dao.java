@@ -5,14 +5,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.geni.beans.ApplicationRI;
+import org.bson.types.ObjectId;
+
+import com.geni.beans.ApplicationReqIdentifier;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBObject;
+import com.mongodb.util.JSON;
 import com.mysql.jdbc.PreparedStatement;
 
+import utility.MongoDB;
 import utility.MysqlJdbc;
 
 public class ARI_Dao {
 	//get ARI id from usersappdata
-	public String assignARItoUser(String emailID){
+/*	public String getUserIdFromEmail(String emailID){
 		String ARI_ID = null;
 		Connection conn = MysqlJdbc.getConnection();
 		Statement stmt = null;
@@ -33,10 +40,10 @@ public class ARI_Dao {
 			MysqlJdbc.closeConn(stmt, conn);
 		}
 		return ARI_ID;
-	}
+	}*/
 	
-	//insert generated ARI into table
-	public boolean insertARI(ApplicationRI ARI){
+	/*//insert generated ARI into table
+	public boolean insertARI(ApplicationReqIdentifier ari){
 		boolean flag = false;
 		Connection conn = MysqlJdbc.getConnection();
 		Statement stmt = null;
@@ -88,5 +95,26 @@ public class ARI_Dao {
 			MysqlJdbc.closeConn(stmt, conn);
 		}
 		return flag;
+	}*/
+	
+	public String insertARI(ApplicationReqIdentifier ari) {
+		String ariJson = "{ " +
+              "'userId': '" + ari.getUserId() + "',"+
+              "'appId': '" + ari.getUserId() + "',"+
+              "'services' : " + 
+                                         "{general : { " +
+                                                              "precondition: 'AppName'," +
+                                                              "feature: '" + ari.getGeneralARI().getAppName() +
+                                                              "'}"+
+                                        
+                                         "}}";
+		DBObject dbObject = (DBObject)JSON.parse(ariJson);
+		DB db = MongoDB.getMongoConnection("local");
+		DBCollection collection = db.getCollection("ari");
+		collection.insert(dbObject);   
+		ObjectId id = (ObjectId) dbObject.get("_id");
+		System.out.println(id.toString());
+		return id.toString();
+		
 	}
 }
