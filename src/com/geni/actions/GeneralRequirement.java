@@ -49,11 +49,12 @@ public class GeneralRequirement extends ActionSupport implements ModelDriven<Gen
 		appKindList.add(getText("appKind.dataIntensiveApp"));
 		appKindList.add(getText("appKind.missionCriticalApp"));
 		appKindList.add(getText("appKind.streamingApp"));
+		appKindList.add(getText("appKind.virtualDesktop"));
 		appKindList.add(getText("list.unknown"));
 		
 		appPriorityList = new ArrayList<String>();
-		appPriorityList.add(getText("appPriority.performance"));
 		appPriorityList.add(getText("appPriority.availability"));
+		appPriorityList.add(getText("appPriority.performance"));
 		appPriorityList.add(getText("appPriority.throughput"));
 		appPriorityList.add(getText("list.unknown"));
 		
@@ -84,8 +85,16 @@ public class GeneralRequirement extends ActionSupport implements ModelDriven<Gen
 		}
 		return isValid;
 	}
-
+	
+	public String getDefaultAppKind() {
+		return "RiceKb";
+	}
+	
 	public String display() {
+		general.setAppName("SoyKb");
+		//general.setAppKind(getText("appKind.missionCriticalApp"));
+		//general.setAppPriority(getText("appPriority.availability"));
+		general.setAppDataSize(getText("appDataSize.GB"));
 		return NONE;
 	}
 	

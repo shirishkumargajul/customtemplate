@@ -1,16 +1,33 @@
 package com.geni.beans;
 
+import java.util.Collection;
+
 public class SoftwareARI {
 	
+	private String webServerRequired;
 	private String webServer;
+	private String dbServerRequired;
 	private String databaseServer;
-	private AdditionalSoftware [] additionalSoftware;
+	private Collection<AdditionalSoftware> additionalSoftware;
 	
+	
+	public String getWebServerRequired() {
+		return webServerRequired;
+	}
+	public void setWebServerRequired(String webServerRequired) {
+		this.webServerRequired = webServerRequired;
+	}
 	public String getWebServer() {
 		return webServer;
 	}
 	public void setWebServer(String webServer) {
 		this.webServer = webServer;
+	}
+	public String getDbServerRequired() {
+		return dbServerRequired;
+	}
+	public void setDbServerRequired(String dbServerRequired) {
+		this.dbServerRequired = dbServerRequired;
 	}
 	public String getDatabaseServer() {
 		return databaseServer;
@@ -18,12 +35,13 @@ public class SoftwareARI {
 	public void setDatabaseServer(String databaseServer) {
 		this.databaseServer = databaseServer;
 	}
-	public AdditionalSoftware[] getAdditionalSoftware() {
+	public Collection<AdditionalSoftware> getAdditionalSoftware() {
 		return additionalSoftware;
 	}
-	public void setAdditionalSoftware(AdditionalSoftware[] additionalSoftware) {
+	public void setAdditionalSoftware(Collection<AdditionalSoftware> additionalSoftware) {
 		this.additionalSoftware = additionalSoftware;
 	}
+	
 	
 	
 }

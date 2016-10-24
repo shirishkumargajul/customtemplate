@@ -37,10 +37,11 @@
 		</action>
 		<action name="setSoftwareReq" class="com.geni.actions.SoftwareRequirement"
 			method="setSoftwareReq">
-			<result name="input">/softwares.jsp</result>
+			<result name="input">/software.jsp</result>
 			<result name="success" type="redirectAction">
             	<param name="actionName">getReqReview</param>
         	</result>
+        	<!-- <result name="success">/delete.jsp</result> -->
 		</action>
 		<action name="getCTXML" class="com.geni.actions.CustomTemplate"
 			method="getCTXML">

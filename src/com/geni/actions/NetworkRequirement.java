@@ -3,7 +3,9 @@ package com.geni.actions;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.geni.beans.GeneralARI;
 import com.geni.beans.NetworkARI;
+import com.geni.services.PrePopulateService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -65,6 +67,7 @@ public class NetworkRequirement extends ActionSupport implements ModelDriven<Net
 		bandwidthList.add(getText("bandwidth.opt3"));
 		bandwidthList.add(getText("bandwidth.opt4"));
 		bandwidthList.add(getText("bandwidth.opt5"));
+		bandwidthList.add(getText("bandwidth.opt6"));
 		bandwidthList.add(getText("list.unknown"));
 
 		yesOrNoList = new ArrayList<String>();
@@ -83,7 +86,7 @@ public class NetworkRequirement extends ActionSupport implements ModelDriven<Net
 		networkTypeList.add(getText("list.unknown"));
 	}
 
-	public String getDefaultBandwidth() {
+/*	public String getDefaultBandwidth() {
 		return getText("bandwidth.opt1");
 	}
 
@@ -96,12 +99,12 @@ public class NetworkRequirement extends ActionSupport implements ModelDriven<Net
 	}
 
 	public String getDefaultNfv() {
-		return getText("list.no");
+		return getText("list.yes");
 	}
 
 	public String getDefaultNetworkType() {
 		return getText("networkType.wired");
-	}
+	}*/
 
 	public boolean isValid() {
 		boolean val = true;
@@ -132,6 +135,17 @@ public class NetworkRequirement extends ActionSupport implements ModelDriven<Net
 	}
 
 	public String display() {
+		ActionContext ctx = ActionContext.getContext();
+		GeneralARI general = (GeneralARI) ctx.getSession().get("general");
+		NetworkARI network = PrePopulateService.getNetworkReq(general);
+		if (network != null) {
+			this.network.setBandwidth(network.getBandwidth());
+			this.network.setIsolated(network.getIsolated());
+			this.network.setLayer(network.getLayer());
+			this.network.setIp(network.getIp());
+			this.network.setNfv(network.getNfv());
+			this.network.setNetworkType(network.getNetworkType());
+		}
 		return NONE;
 	}
 

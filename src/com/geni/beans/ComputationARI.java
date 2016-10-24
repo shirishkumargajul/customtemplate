@@ -2,6 +2,7 @@ package com.geni.beans;
 
 public class ComputationARI {
 
+	private String noOfNodes;
 	private String noOfCores; // no. of VM or cores
 	private String operatingSystem; // Windows Server 2008R2, Windows Server 7,
 	private String osArchitecture;
@@ -10,6 +11,13 @@ public class ComputationARI {
 	private String gpu;				//yes or no
 	private String gpuSize;	 			// need gpu or not
 	
+	
+	public String getNoOfNodes() {
+		return noOfNodes;
+	}
+	public void setNoOfNodes(String noOfNodes) {
+		this.noOfNodes = noOfNodes;
+	}
 	public String getNoOfCores() {
 		return noOfCores;
 	}

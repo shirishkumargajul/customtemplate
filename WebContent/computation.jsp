@@ -260,95 +260,50 @@ A computer on which a hypervisor is running one or more virtual machines is defi
 					<div class="contact-form_grid">
 						<s:form action="setComputationReq" method="post" namespace="/">
 						
+							<p><s:text name="noOfNodes"></s:text></p>
+							<s:fielderror fieldName="noOfNodes"></s:fielderror>
+							<s:select name="noOfNodes" id="noOfNodes" key="noOfNodes" headerKey="null"
+								headerValue="Choose one" list="noOfNodesList">
+							</s:select>
+							
 							<p><s:text name="noOfCores"></s:text></p>
 							<s:fielderror fieldName="noOfCores"></s:fielderror>
-							<s:select name="noOfCores" id="noOfCores" key="noOfCores"
-								list="#{'null':'Choose one','1':'1','2':'2','3':'3',
-									'4':'4','5':'5','6':'6','7':'7','8':'8','9':'9','10':'10','default':'Unknown'}">
+							<s:select name="noOfCores" id="noOfCores" key="noOfCores" headerKey="null"
+								headerValue="Choose one" list="noOfCoresList">
 							</s:select>
 							
-							<!--  
-							<p>Do you require virtual server?</p>
-							<select id="virtual_server_requirement" name="virtual_server_requirement">
-								<option value="virtual_server_null" selected>Choose One:</option>
-								<option value="virtual_server_yes">Yes</option>
-								<option value="virtual_server_no">No</option>
-								<option value="virtual_server_unknown">Unknown</option>
-							</select>
-							
-							<p>Do you require virtual CPU?</p>
-							<select id="virtual_CPU_requirement" name="virtual_CPU_requirement">
-								<option value="virtual_CPU_null" selected>Choose One:</option>
-								<option value="virtual_CPU_yes">Yes</option>
-								<option value="virtual_CPU_no">No</option>
-								<option value="virtual_CPU_unknown">Unknown</option>
-							</select>
-							<p>Do you require virtual memory?</p>
-							<select id="virtual_memory_requirement" name="virtual_memory_requirement">
-								<option value="virtual_memory_null" selected>Choose One:</option>
-								<option value="virtual_memory_yes">Yes</option>
-								<option value="virtual_memory_no">No</option>
-								<option value="virtual_memory_unknown">Unknown</option>
-							</select> -->
 							<p><s:text name="dedicatedServer"></s:text></p>
 							<s:fielderror fieldName="dedicatedServer"></s:fielderror>
-							<s:select name="dedicatedServer" id="dedicatedServer" key="dedicatedServer"
-								list="#{'null':'Choose one','No':'No','Yes':'Yes','default':'Unknown'}">
+							<s:select name="dedicatedServer" id="dedicatedServer" key="dedicatedServer" headerKey="null"
+								headerValue="Choose one" list="yesOrNoList">
 							</s:select>
 							
-							<%-- <select id="dedicatedServer" name="dedicatedServer">
-								<option value="null" selected>Choose One:</option>
-								<option value="yes">Yes</option>
-								<option value="no">No</option>
-								<option value="default">Unknown</option>
-							</select>  --%>
-								<!-- 
-							 <p>Do you require hypervisor?</p>
-							<select id="hypervisor_requirement" name="hypervisor_requirement">
-								<option value="hypervisor_null" selected>Choose One:</option>
-								<option value="hypervisor_yes">Yes</option>
-								<option value="hypervisor_no">No</option>
-								<option value="hypervisor_unknown">Unknown</option>
-							</select>
-							-->
 							<p><s:text name="operatingSystem"></s:text></p>
 							<s:fielderror fieldName="operatingSystem"></s:fielderror>
-							<s:select name="operatingSystem" id="operatingSystem" key="operatingSystem" 
-								list="#{'null':'Choose One','centOs_6':'Cent OS 6','cent_os_7':'Cent OS 7',
-									'debian_os_6':'Debian 6','debian_os_7':'Debian 7','debian_os_8':'Debian 8',
-									'fedora_os_24':'Fedora 24','ubuntu_os_12':'Ubuntu 12','ubuntu_os_14':'Ubuntu 14',
-									'ubuntu_os_16':'Ubuntu 16','redhat_os_7':'Linux Redhat Server 7',
-									'win_os_2008R2':'Windows Server 2008R2','win_os_7':'Windows Server 7',
-									'default':'Unknown'}">
+							<s:select name="operatingSystem" id="operatingSystem" key="operatingSystem" headerKey="null" 
+								headerValue="Choose one" list="osList">
 							</s:select>
 							
-							<%-- <p>Architecture of Operating System</p>
+							<p><s:text name="osArchitecture"></s:text></p>
 							<s:fielderror fieldName="osArchitecture"></s:fielderror>
-							<s:select name="osArchitecture" id="osArchitecture" key="osArchitecture"
-								list="#{'null':'Choose One','32 bit':'32 bit','64 bit':'64 bit','default':'Unknown'}">
-							</s:select> --%>
+							<s:select name="osArchitecture" id="osArchitecture" key="osArchitecture" headerKey="null"
+								headerValue="Choose one" list="osArchList">
+							</s:select>
 							
 							<p><s:text name="ramSize"></s:text></p>
 							<s:fielderror fieldName="ramSize"></s:fielderror>
-							<s:select name="ramSize" id="ramSize" key="ramSize" 
-								list="#{'null':'Choose One','512MB - 1GB':'512MB - 1GB','1GB - 2GB':'1GB - 2GB',
-								'2GB - 4GB':'2GB - 4GB','4GB - 8GB':'4GB - 8GB','8GB - 12GB':'8GB - 12GB',
-								'12GB - 16GB':'12GB - 16GB','16GB - 32GB':'16GB - 32GB','32GB - 64GB':'32GB - 64GB',
-								'64GB - 128GB':'64GB - 128GB'}">
+							<s:select name="ramSize" id="ramSize" key="ramSize" headerKey="null"
+								headerValue="Choose one" list="ramSizeList">
 							</s:select>
 							
 							<p><s:text name="gpu"></s:text></p>
 							<s:fielderror fieldName="gpu"></s:fielderror>
-							<s:select name="gpu" id="gpu" key="gpu"
-								list="#{'No':'No','Yes':'Yes','default':'Unknown'}">
-							</s:select>
+							<s:doubleselect name="gpu" key="gpu" headerKey="null" headerValue="Choose one" 
+								list="gpuMap.keySet()" value="getDefaultGpu" 
+								doubleName="gpuSize" doubleListTitle="GPU Size" doubleList="gpuMap.get(top)">
+							</s:doubleselect>
 							
-							<!--  dynamically generated by java script based on the value of gpu requirement -->
-							<div id="dynamic_gpu_size">
-							
-							</div>
-							
-							<input type="submit" value="Submit">
+							<input type="submit" value="Next">
 						</s:form></div>
 					</div>
 				</div>

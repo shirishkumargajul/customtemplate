@@ -186,19 +186,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<p><s:text name="localStorageSize"></s:text></p>
 					<s:fielderror fieldName="localStorageSize"></s:fielderror>
 					<s:select name="localStorageSize" key="localStorageSize" headerKey="null"
-						headerValue="Choose one" list="storageSizeList" value="defaultStorageSize">
+						headerValue="Choose one" list="storageSizeList">
 					</s:select>
 					
 					<p><s:text name="localStorageDisk"></s:text></p>
 					<s:fielderror fieldName="localStorageDisk"></s:fielderror>
 					<s:select name="localStorageDisk" key="localStorageDisk" headerKey="null"
-						headerValue="Choose one" list="storageDiskList" value="defaultStorageDisk">
+						headerValue="Choose one" list="storageDiskList">
 					</s:select>
 				
 					<p><s:text name="remoteStorage"></s:text></p>
 					<s:fielderror fieldName="remoteStorage"></s:fielderror>
 					<s:select name="remoteStorage" key="remoteStorage" id="remoteStorage" onchange="toggleRemoteStorage()"
-						headerKey="null" headerValue="Choose one" list="yesOrNoList" value="defaultRemoteStorage">
+						headerKey="null" headerValue="Choose one" list="yesOrNoList">
 					</s:select>
 					
 					<!-- Content of the following division is dynamiclly added by javascript based on the remote storage requirement -->

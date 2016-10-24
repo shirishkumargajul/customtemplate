@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=GB18030"
 	pageEncoding="GB18030"%>
-<%@ page import="com.geni.beans.GeneralARI,com.geni.beans.NetworkARI,com.geni.beans.StorageARI,com.geni.beans.ComputationARI,com.geni.beans.SoftwareARI" %>
+<%@ page import="com.geni.beans.GeneralARI,com.geni.beans.NetworkARI,com.geni.beans.StorageARI,com.geni.beans.ComputationARI,com.geni.beans.SoftwareARI,com.geni.beans.AdditionalSoftware,java.util.Collection" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib prefix="s" uri="/struts-tags"%>
 <html>
@@ -81,7 +81,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<p>Application Type 	: <%= general.getAppKind() %></p>
 						<p>Application Priority : <%= general.getAppPriority() %></p>
 						<p>Application DataSize : <%= general.getAppDataSize() %></p>
-						<p>No. of Nodes			: <%= general.getNoOfNodes() %></p>
 					</td>
 					<td>
 						<% NetworkARI network = (NetworkARI)session.getAttribute("network"); %>
@@ -112,6 +111,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</td>
 					<td>
 						<% ComputationARI compute = (ComputationARI)session.getAttribute("computation");%>
+						<p>No. of Nodes		: <%= compute.getNoOfNodes() %></p>
 						<p>No. of cores		: <%= compute.getNoOfCores() %></p>
 						<p>Dedicated Server : <%= compute.getDedicatedServer() %></p>
 						<p>OS				: <%= compute.getOperatingSystem() %></p>
@@ -119,21 +119,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<p>Gpu Size			: <%= compute.getGpuSize()%>
 					</td>
 				</tr>
-				<tr><td colspan="2">
-					<% SoftwareARI software = (SoftwareARI)session.getAttribute("software"); %>
-					<p>Web Server	: <%= software.getWebServer() %>
-					<p>DB Server	: <%= software.getDatabaseServer() %>
-				</td></tr>
+				</table>
+				
+				<br/>
+				
+			<table border="1" width="100%">
+				<% SoftwareARI software = (SoftwareARI)session.getAttribute("software"); %>
+				<tr><th colspan="2"><p>Software Requirements</p></th></tr>
+				<tr><th><p>Web Server</p></th><td><%= software.getWebServer() %></td></tr>
+				<tr><th><p>DB Server</p></th><td><%= software.getDatabaseServer() %></td></tr>
+				<tr><th colspan="2" align="center">Additional Softwares</th></tr>
+				<tr><th >Name</th><th>Github URL</th></tr>
+				<% Collection<AdditionalSoftware> additionalSoftwares = software.getAdditionalSoftware();
+					for (AdditionalSoftware as : additionalSoftwares) { %>
+				<tr><td><%= as.getName()%></td><td><%= as.getGithubURL()%></td></tr>
+				<% }%>
 			</table>
 			
 			<br/>
 			<br/>
 			<br/>
 			
-			<a href="editRequirements.action" class="btn btn-warning"><span
-							class="fa fa-user-plus"></span>&nbsp;Edit</a>&nbsp; <a
-							href="/Test_Demo3/getCTXML.action" class="btn btn-success"><span
-							class="fa fa-refresh"></span>&nbsp;Submit</a>
+			<a href="#" class="btn btn-warning">
+			<span class="fa fa-user-plus"></span>&nbsp;Edit</a>&nbsp; 
+			<a href="/Test_Demo3/getCTXML.action" class="btn btn-success">
+			<span class="fa fa-refresh"></span>&nbsp;Submit</a>
 			
 			</div>
 		</div>

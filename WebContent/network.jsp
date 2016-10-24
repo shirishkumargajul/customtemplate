@@ -183,12 +183,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<p><s:text name="bandwidth"></s:text></p>
 	<s:fielderror fieldName="bandwidth"></s:fielderror>
 	<s:select name="bandwidth" key="bandwidth" headerKey="null" 
-		headerValue="Choose one" list="bandwidthList" value="defaultBandwidth">
+		headerValue="Choose one" list="bandwidthList">
 	</s:select>
 	
 	<p><s:text name="isolated"></s:text></p>
 	<s:select name="isolated" key="isolated" headerKey="null" 
-		headerValue="Choose one" list="yesOrNoList" value="defaultIsolated">
+		headerValue="Choose one" list="yesOrNoList">
 	</s:select>
 	
 	<p><s:text name="layer"></s:text></p>
@@ -199,17 +199,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 	<p><s:text name="ip"></s:text></p>
 	<s:select name="ip" key="ip" headerKey="null" 
-		headerValue="Choose one" list="ipList" value="defaultIp">
+		headerValue="Choose one" list="ipList">
 	</s:select>
 	
 	<p><s:text name="nfv"></s:text></p>
 	<s:select name="nfv" key="nfv" headerKey="null" 
-		headerValue="Choose one" list="yesOrNoList" value="defaultNfv">
+		headerValue="Choose one" list="yesOrNoList">
 	</s:select>
 	
 	<p><s:text name="networkType"></s:text></p>
 	<s:select name="networkType" key="networkType" headerKey="null" 
-		headerValue="Choose one" list="networkTypeList" value="defaultNetworkType">
+		headerValue="Choose one" list="networkTypeList">
 	</s:select>
 	
 	<input type="submit" value="Next">

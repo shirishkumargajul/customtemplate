@@ -3,7 +3,10 @@ package com.geni.actions;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.geni.beans.GeneralARI;
+import com.geni.beans.NetworkARI;
 import com.geni.beans.StorageARI;
+import com.geni.services.PrePopulateService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -66,7 +69,7 @@ public class StorageRequirement extends ActionSupport implements ModelDriven<Sto
 		yesOrNoList.add(getText("list.unknown"));
 	}
 	
-	public String getDefaultStorageSize() {
+	/*public String getDefaultStorageSize() {
 		return getText("storageSizeList.opt1");
 	}
 	
@@ -76,7 +79,7 @@ public class StorageRequirement extends ActionSupport implements ModelDriven<Sto
 	
 	public String getDefaultRemoteStorage() {
 		return getText("list.no");
-	}
+	}*/
 	
 	public boolean isValid() {
 		boolean val = true;
@@ -111,6 +114,14 @@ public class StorageRequirement extends ActionSupport implements ModelDriven<Sto
 	}
 	
 	public String display() {
+		ActionContext ctx = ActionContext.getContext();
+		GeneralARI general = (GeneralARI) ctx.getSession().get("general");
+		StorageARI storage = PrePopulateService.getStorageReq(general);
+		if (storage != null) {
+			this.storage.setLocalStorageSize(storage.getLocalStorageSize());
+			this.storage.setLocalStorageDisk(storage.getLocalStorageDisk());
+			this.storage.setRemoteStorage(storage.getRemoteStorage());
+		}
 		return NONE;
 	}
 

@@ -5,7 +5,6 @@ public class GeneralARI {
 	private String appKind;
 	private String appPriority;
 	private String appDataSize;
-	private int noOfNodes;
 	
 	public String getAppName() {
 		return appName;
@@ -18,12 +17,6 @@ public class GeneralARI {
 	}
 	public void setAppKind(String appKind) {
 		this.appKind = appKind;
-	}
-	public int getNoOfNodes() {
-		return noOfNodes;
-	}
-	public void setNoOfNodes(int noOfNodes) {
-		this.noOfNodes = noOfNodes;
 	}
 	public String getAppPriority() {
 		return appPriority;

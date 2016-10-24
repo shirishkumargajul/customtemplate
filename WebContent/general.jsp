@@ -158,7 +158,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				
 					<p><s:text name="appName"></s:text></p>
 					<s:fielderror fieldName="appName"></s:fielderror>
-					<s:textfield class="textbox" name="appName" key="appName" />
+					<s:textfield class="textbox" name="appName" key="appName"/>
 					
 					<p><s:text name="appKind"></s:text></p>
 					<s:fielderror fieldName="appKind"></s:fielderror>
