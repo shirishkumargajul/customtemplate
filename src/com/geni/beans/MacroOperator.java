@@ -1,51 +1,56 @@
 package com.geni.beans;
 
 public class MacroOperator {
-	private int macid;
-	private String domain;
-	private String resource;
-	private String precondition;
-	private float totalCost;
-	private int ApplicationIdentifie;
 	
-	public int getMacid() {
+	private String macid;
+	private String ariId;
+	private GeneralMac generalMac;
+	private NetworkMac networkMac;
+	private StorageMac storageMac;
+	private ComputationMac computationMac;
+	private float totalCost;
+	
+	public String getMacid() {
 		return macid;
 	}
-	public String getDomain() {
-		return domain;
+	public void setMacid(String macid) {
+		this.macid = macid;
 	}
-	public String getResource() {
-		return resource;
+	public String getAriId() {
+		return ariId;
 	}
-	public String getPrecondition() {
-		return precondition;
+	public void setAriId(String ariId) {
+		this.ariId = ariId;
+	}
+	public GeneralMac getGeneralMac() {
+		return generalMac;
+	}
+	public void setGeneralMac(GeneralMac generalMac) {
+		this.generalMac = generalMac;
+	}
+	public NetworkMac getNetworkMac() {
+		return networkMac;
+	}
+	public void setNetworkMac(NetworkMac networkMac) {
+		this.networkMac = networkMac;
+	}
+	public StorageMac getStorageMac() {
+		return storageMac;
+	}
+	public void setStorageMac(StorageMac storageMac) {
+		this.storageMac = storageMac;
+	}
+	public ComputationMac getComputationMac() {
+		return computationMac;
+	}
+	public void setComputationMac(ComputationMac computationMac) {
+		this.computationMac = computationMac;
 	}
 	public float getTotalCost() {
 		return totalCost;
 	}
-	
-	public void setMacid(int macid) {
-		this.macid = macid;
-	}
-	public void setDomain(String domain) {
-		this.domain = domain;
-	}
-	public void setResource(String resource) {
-		this.resource = resource;
-	}
-	public void setPrecondition(String precondition) {
-		this.precondition = precondition;
-	}
 	public void setTotalCost(float totalCost) {
 		this.totalCost = totalCost;
 	}
-	
-	public void setApplicationIdentifie(int applicationIdentifie) {
-		ApplicationIdentifie = applicationIdentifie;
-	}
-	public int getApplicationIdentifie() {
-		return ApplicationIdentifie;
-	}
-	
 	
 }

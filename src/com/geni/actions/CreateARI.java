@@ -7,7 +7,6 @@ import com.geni.beans.NetworkARI;
 import com.geni.beans.SoftwareARI;
 import com.geni.beans.StorageARI;
 import com.geni.services.ARI_Generation_Service;
-import com.geni.services.MacroOperatorService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -39,6 +38,10 @@ public class CreateARI extends ActionSupport {
 		/*if (ariId != null) {
 			MacroOperatorService macro_service = new MacroOperatorService();
 			macro_service.MacroOperatorGeneration(ariId);
+			if (macOp is created then) {
+				CustomTemplateService service = new CustomTemplateService();
+				service.deployResources(appARI);
+			}
 		} else {
 			flag = ERROR;
 		}*/

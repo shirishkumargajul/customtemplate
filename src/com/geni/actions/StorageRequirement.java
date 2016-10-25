@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.geni.beans.GeneralARI;
-import com.geni.beans.NetworkARI;
 import com.geni.beans.StorageARI;
 import com.geni.services.PrePopulateService;
 import com.opensymphony.xwork2.ActionContext;

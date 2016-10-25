@@ -6,12 +6,10 @@ import java.util.List;
 
 import com.geni.beans.ComputationARI;
 import com.geni.beans.GeneralARI;
-import com.geni.beans.StorageARI;
 import com.geni.services.PrePopulateService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
-import com.sun.javafx.collections.MappingChange.Map;
 
 public class ComputationRequirement extends ActionSupport implements ModelDriven<ComputationARI>{
 
@@ -36,10 +34,12 @@ public class ComputationRequirement extends ActionSupport implements ModelDriven
 		this.noOfNodesList = noOfNodesList;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public HashMap getGpuMap() {
 		return gpuMap;
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" }) 
 	public void setGpuMap(HashMap gpuMap) {
 		this.gpuMap = gpuMap;
 	}
