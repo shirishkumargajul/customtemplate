@@ -7,6 +7,7 @@ public class StorageMac {
 	private String remoteStorageSize;
 	private String remoteStorageLocation;	// storage geo location if storage type is remote
 	private String remoteStorageDisk; 	// HDD, SSD
+	private float storageCost;
 	
 	public String getLocalStorageSize() {
 		return localStorageSize;
@@ -44,6 +45,12 @@ public class StorageMac {
 	public void setRemoteStorageDisk(String remoteStorageDisk) {
 		this.remoteStorageDisk = remoteStorageDisk;
 	}
-
+	public float getStorageCost() {
+		return storageCost;
+	}
+	public void setStorageCost(float storageCost) {
+		this.storageCost = storageCost;
+	}
+	
 
 }

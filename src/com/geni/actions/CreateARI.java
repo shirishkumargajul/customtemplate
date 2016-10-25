@@ -35,12 +35,13 @@ public class CreateARI extends ActionSupport {
 		SoftwareARI software = (SoftwareARI) ctx.getSession().get("software");
 		
 		String ariId = ariService.generateARI(emailID, general, network, storage, computation, software);
-		if (ariId != null) {
+		System.out.println("Inside CreateARI class; ariId = " + ariId);
+		/*if (ariId != null) {
 			MacroOperatorService macro_service = new MacroOperatorService();
 			macro_service.MacroOperatorGeneration(ariId);
 		} else {
 			flag = ERROR;
-		}
+		}*/
 		return flag;
 	}
 

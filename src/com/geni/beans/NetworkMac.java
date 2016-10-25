@@ -7,6 +7,7 @@ public class NetworkMac {
 	private String ip;
 	private String nfv;
 	private String networkType;	// SDN or Wired
+	private float networkCost;
 
 	public String getBandwidth() {
 		return bandwidth;
@@ -55,5 +56,14 @@ public class NetworkMac {
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
+
+	public float getNetworkCost() {
+		return networkCost;
+	}
+
+	public void setNetworkCost(float networkCost) {
+		this.networkCost = networkCost;
+	}
+	
 
 }

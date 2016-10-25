@@ -1,21 +1,13 @@
 package Dao;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 import org.bson.types.ObjectId;
-
 import com.geni.beans.ApplicationReqIdentifier;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
-import com.mysql.jdbc.PreparedStatement;
-
 import utility.MongoDB;
-import utility.MysqlJdbc;
+
 
 public class ARI_Dao {
 	//get ARI id from usersappdata
@@ -113,7 +105,7 @@ public class ARI_Dao {
 		DBCollection collection = db.getCollection("ari");
 		collection.insert(dbObject);   
 		ObjectId id = (ObjectId) dbObject.get("_id");
-		System.out.println(id.toString());
+		System.out.println("inside ARI_Dao class; arid id = " + id.toString());
 		return id.toString();
 		
 	}

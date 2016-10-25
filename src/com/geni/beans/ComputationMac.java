@@ -1,4 +1,4 @@
-import com.geni.beans.String;
+package com.geni.beans;
 
 public class ComputationMac {
 	private String noOfNodes;
@@ -60,5 +60,12 @@ public class ComputationMac {
 	public void setGpuSize(String gpuSize) {
 		this.gpuSize = gpuSize;
 	}
+	public float getComputationCost() {
+		return computationCost;
+	}
+	public void setComputationCost(float computationCost) {
+		this.computationCost = computationCost;
+	}
+	
 
 }
