@@ -7,6 +7,7 @@ public class MacroOperator {
 	private String precondition;
 	private float totalCost;
 	private int ApplicationIdentifie;
+	
 	public int getMacid() {
 		return macid;
 	}
