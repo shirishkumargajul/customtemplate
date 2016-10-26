@@ -14,26 +14,22 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.apache.struts2.ServletActionContext;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
-import com.geni.beans.ApplicationRI;
+import com.geni.beans.ApplicationReqIdentifier;
 import com.geni.beans.ComputationARI;
 import com.geni.beans.GeneralARI;
 import com.geni.beans.NetworkARI;
-import com.geni.beans.StorageARI;
-import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
 
 public class CustomTemplateService {
 	
-	public File createTemplate(ApplicationRI appRI) {
+	public File createTemplate(ApplicationReqIdentifier appRI) {
 		return buildTemplate(appRI);
 	}
 	
-	public String deployResources(ApplicationRI appRI) {
-		ProcessBuilder pb = new ProcessBuilder("/usr/local/bin/python2.7", "/Users/arjun_ac/Desktop/geni_deployment.py", Integer.toString(appRI.getGeneral().getNoOfNodes()));
+	public String deployResources(ApplicationReqIdentifier appRI) {
+		ProcessBuilder pb = new ProcessBuilder("/usr/local/bin/python2.7", "/Users/arjun_ac/Desktop/geni_deployment.py", appRI.getComputationARI().getNoOfNodes());
 		pb.redirectErrorStream(true);
 		System.out.println("Running the deployment script");
 		try {
@@ -46,8 +42,8 @@ public class CustomTemplateService {
 			System.out.println("Echo output:\n" + output);
 			
 			//ServletActionContext.getResponse().getWriter().print(output);
-			ActionContext ctx = ActionContext.getContext();
-			ctx.getSession().put("pythonResult", output);
+			//ActionContext ctx = ActionContext.getContext();
+			//ctx.getSession().put("pythonResult", output);
 			//return output(process.getInputStream());
 			return output;
 		} catch (IOException e) {
@@ -74,7 +70,7 @@ public class CustomTemplateService {
 		return sb.toString();
 	}
 	
-	public File buildTemplate(ApplicationRI appRI) {
+	public File buildTemplate(ApplicationReqIdentifier appRI) {
 		DocumentBuilderFactory icFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder icBuilder;
 		try {
@@ -85,7 +81,7 @@ public class CustomTemplateService {
 
 			// append child elements to root element
 			mainRootElement.appendChild(getTemplateId(doc,"temp_12345"));
-			mainRootElement.appendChild(getAppInfo(doc, appRI.getGeneral()));
+			mainRootElement.appendChild(getAppInfo(doc, appRI.getGeneralARI()));
 			//mainRootElement.appendChild(getHardwareResource(doc, appRI.getNetwork(), appRI.getStorage(), appRI.getComputation()));
 			mainRootElement.appendChild(getSoftwareResource(doc));
 
