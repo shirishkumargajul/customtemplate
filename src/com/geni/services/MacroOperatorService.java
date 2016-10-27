@@ -78,8 +78,8 @@ public class MacroOperatorService {
 		query.setRamUnitsLB(computationARI.getRamUnitsLB());
 		query.setRamUnitsUB(computationARI.getRamUnitsUB());
 		
-		query.setStorageSizeLB(storageARI.getStorageSizeLB());
-		query.setStorageSizeUB(storageARI.getStorageSizeUB());
+		query.setStorageSizeLB(4);//storageARI.getStorageSizeLB());
+		query.setStorageSizeUB(8);//storageARI.getStorageSizeUB());
 		
 		query.setStorageUnitsLB(storageARI.getStorageUnitsLB());
 		query.setStorageUnitsUB(storageARI.getStorageUnitsUB());
@@ -89,9 +89,12 @@ public class MacroOperatorService {
 		query.setOsArch(computationARI.getOsArchitecture());
 		query.setNoOfCores(Integer.parseInt(computationARI.getNoOfCores()));
 		
+		System.out.println("inside macoperator servcie class calling getMacOps functions");
 		this.moCollection = macOpDao.getMacOps(query);
 		if (moCollection != null) {
 			macIdList = macOpDao.insertMacOpsToDB(moCollection, ariId);
+		} else {
+			System.out.println("getMacOps function returned null");
 		}
 		
 		return macIdList;

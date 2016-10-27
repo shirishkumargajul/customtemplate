@@ -12,7 +12,7 @@
 
 	<package name="default" extends="struts-default">
 	
-		<action name="createARI" class="com.geni.actions.CreateARI"
+		<action name="generateARI" class="com.geni.actions.CreateARI"
 			method="generateARI">
 			<result name="error">/error.jsp</result>
 			<result name="success">/final.html</result>
