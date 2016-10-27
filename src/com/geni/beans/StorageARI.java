@@ -46,6 +46,40 @@ public class StorageARI {
 		this.remoteStorageDisk = remoteStorageDisk;
 	}
 
+	public int getStorageSizeLB() {
+		if (localStorageSize.equals("5GB")) {
+			return 5;
+		} else {
+			String [] temp = localStorageDisk.split(" ");
+			return Integer.parseInt(temp[0].replaceAll("[^0-9]", ""));
+		}
+	}
+	
+	public int getStorageSizeUB() {
+		if (localStorageSize.equals("5GB")) {
+			return 5;
+		} else {
+			String [] temp = localStorageDisk.split(" ");
+			return Integer.parseInt(temp[2].replaceAll("[^0-9]", ""));
+		}
+	}
+	
+	public String getStorageUnitsLB() {
+		if (localStorageSize.equals("5GB")) {
+			return "GB";
+		} else {
+			String [] temp = localStorageDisk.split(" ");
+			return temp[0].replaceAll("[0-9]", "");
+		}
+	}
+	
+	public String getStorageUnitsUB() {
+		if (localStorageSize.contains("TB")) {
+			return "TB";
+		} else {
+			return "GB";
+		}
+	}
 	
 
 }

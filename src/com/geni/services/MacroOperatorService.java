@@ -1,21 +1,26 @@
 package com.geni.services;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
+import com.geni.beans.ComputationARI;
 import com.geni.beans.MacroOperator;
+import com.geni.beans.MacroOperatorQuery;
+import com.geni.beans.NetworkARI;
+import com.geni.beans.SoftwareARI;
+import com.geni.beans.StorageARI;
 
 import Dao.MacroOperatorDao;
-import Dao.ResourceSpaceDao;
 
 public class MacroOperatorService {
-	private MacroOperator mo;
-	private MacroOperatorDao mod;
-	private ResourceSpaceDao rsd = new ResourceSpaceDao();
+	private Collection<MacroOperator> moCollection;
+	private MacroOperatorDao macOpDao;
+	//private ResourceSpaceDao rsd = new ResourceSpaceDao();
 	
 	public MacroOperatorService() {
-		this.mo = new MacroOperator();
-		this.mod = new MacroOperatorDao();
+		this.moCollection = new ArrayList<MacroOperator>();
+		this.macOpDao = new MacroOperatorDao();
 	}
 
 	// public MacroOperatorService(int apprId){
@@ -24,7 +29,7 @@ public class MacroOperatorService {
 	// this.MacroOperatorGeneration(apprId);
 	// }
 
-	public boolean MacroOperatorGeneration(String apprId) {
+/*	public boolean MacroOperatorGeneration(NetworkARI network, StorageARI storage, ComputationARI computation, SoftwareARI software,String apprId) {
 		String ack = null;
 
 		List<List<String>> tempPreconditionFeaturesList = new ArrayList<List<String>>();
@@ -61,21 +66,37 @@ public class MacroOperatorService {
 		} else {
 			return false;
 		}
-	}
+	}*/
 
-	public MacroOperator getMo() {
-		return mo;
+	public List<String> generateMacroOperator(NetworkARI networkARI, StorageARI storageARI, ComputationARI computationARI, SoftwareARI softwareARI, String ariId) {
+		MacroOperatorQuery query = new MacroOperatorQuery();
+		List<String> macIdList = null;
+		
+		query.setRamSizeLB(computationARI.getRamSizeLB());
+		query.setRamSizeUB(computationARI.getRamSizeUB());
+		
+		query.setRamUnitsLB(computationARI.getRamUnitsLB());
+		query.setRamUnitsUB(computationARI.getRamUnitsUB());
+		
+		query.setStorageSizeLB(storageARI.getStorageSizeLB());
+		query.setStorageSizeUB(storageARI.getStorageSizeUB());
+		
+		query.setStorageUnitsLB(storageARI.getStorageUnitsLB());
+		query.setStorageUnitsUB(storageARI.getStorageUnitsUB());
+		
+		query.setStorageDisk(storageARI.getLocalStorageDisk());
+		query.setOs(computationARI.getOperatingSystem());
+		query.setOsArch(computationARI.getOsArchitecture());
+		query.setNoOfCores(Integer.parseInt(computationARI.getNoOfCores()));
+		
+		this.moCollection = macOpDao.getMacOps(query);
+		if (moCollection != null) {
+			macIdList = macOpDao.insertMacOpsToDB(moCollection, ariId);
+		}
+		
+		return macIdList;
+		
 	}
+	
 
-	public void setMo(MacroOperator mo) {
-		this.mo = mo;
-	}
-
-	public MacroOperatorDao getMod() {
-		return mod;
-	}
-
-	public void setMod(MacroOperatorDao mod) {
-		this.mod = mod;
-	}
 }

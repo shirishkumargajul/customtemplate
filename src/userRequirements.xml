@@ -42,11 +42,11 @@
             	<param name="actionName">getReqReview</param>
         	</result>
 		</action>
-		<action name="getCTXML" class="com.geni.actions.CustomTemplate"
+		<!-- <action name="getCTXML" class="com.geni.actions.CustomTemplate"
 			method="getCTXML">
 			<result name="input"></result>
 			<result name="success">/xmlOutput.jsp</result>
-		</action>
+		</action> -->
 
 	</package>
 

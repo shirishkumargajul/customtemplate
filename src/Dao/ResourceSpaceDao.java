@@ -18,7 +18,7 @@ public class ResourceSpaceDao {
 	
 	public ResourceSpaceDao(){}
 	
-	public void InsertData2DB(ResourceSpace rs){
+/*	public void InsertData2DB(ResourceSpace rs){
 		setRs(rs);
 		Connection connection = MysqlJdbc.getConnection();
 		PreparedStatement pstmt = null;
@@ -37,8 +37,8 @@ public class ResourceSpaceDao {
 		}finally{
 			MysqlJdbc.closeConn(pstmt, connection);
 		}
-	}
-
+	}*/
+/*
 	public List<String> findRealResource(String domain, String resourceClass){
 		setRs(rs);
 		Connection connection = MysqlJdbc.getConnection();
@@ -65,5 +65,9 @@ public class ResourceSpaceDao {
 
 	public void setRs(ResourceSpace rs) {
 		this.rs = rs;
+	}*/
+	
+	public Collection<> getSolutions() {
+		
 	}
 }

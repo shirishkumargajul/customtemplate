@@ -60,6 +60,31 @@ public class ComputationARI {
 	public void setGpuSize(String gpuSize) {
 		this.gpuSize = gpuSize;
 	}
-
-
+	
+	public int getRamSizeLB() {
+		if (ramSize.contains("512")) {
+			return 512;
+		} else {
+			String temp[] = ramSize.split("GB");
+			return Integer.parseInt(temp[0]);
+			
+		}
+	}
+	
+	public String getRamUnitsLB() {
+		if (ramSize.contains("512")) {
+			return "MB";
+		} else {
+			return "GB";
+		}
+	}
+	
+	public int getRamSizeUB() {
+		String [] temp = ramSize.split("-");
+		return Integer.parseInt(temp[1].replaceAll("[^0-9]", ""));
+	}
+	
+	public String getRamUnitsUB() {
+		return "GB";
+	}
 }
